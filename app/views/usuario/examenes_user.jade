@@ -2,3 +2,5 @@ extends dash_user
 
 block content
 	.col-md-9
+		+panel-default("Examenes Realizados")
+			+table-hover(["Fecha de toma de muestra","Tipo de Examen ","Estado","Adjunto"],[])

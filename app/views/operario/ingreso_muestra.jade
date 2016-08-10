@@ -2,3 +2,59 @@ extend dash_operario
 
 block content 
 	.col-md-9
+		+panel-default("Informacion de Paciente")
+			.panel-body
+				form.form-inline(data-toggle='validator', role='form')
+					.form-group
+						label.control-label(for='inputID') Cedula:
+						input#inputID.form-control.required(type='text', maxlength='10', placeholder='Ingrese una cédula', required='')
+						button#btnBuscarId.btn.btn-default(type='button')
+							span.glyphicon.glyphicon-search(aria-hidden='true')
+				form.form-inline
+					.form-group
+						label.control-label(for='nombrePaciente') Nombre:
+						input#nombrePaciente.form-control(type='text', readonly='')
+					.form-group
+						label.control-label(for='apellidoPaciente') Apellido:
+						input#apellidoPaciente.form-control(type='text', readonly='')
+		+panel-default("Informacion de Muestra")
+			.panel-body
+				form
+					.form-group.form-inline
+						label.control-label(for='centromed') Centro Médico:
+						select#centromed.form-control
+					.form-group.form-inline
+						label.control-label Exámenes a realizar:
+						button#btnEditarExam.btn.btn-default(type="button",data-toggle="modal",data-target="#examenes")
+							span.glyphicon.glyphicon-pencil(aria-hidden='true')
+					.panel
+						+table-condensed(["Fecha Toma Muestra","Tipo de Examen"],[])
+					.form-group.form-inline
+						label.control-label(for='laboratorio') Laboratorio:
+						select#laboratorio.form-control
+		button#btnCodigo.btn(data-toggle="modal",data-target="#codigo")
+			span.glyphicon.glyphicon-barcode(aria-hidden='true')
+			|  Generar Código
+		#examenes.modal.fade(role='dialog')
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(type='button', data-dismiss='modal') ×
+						h4.modal-title Seleccion de Examenes
+				.modal-body
+					p Some text in the modal.
+				.modal-footer
+					button.btn.btn-default(type='button', data-dismiss='modal') Descartar
+					button.btn.btn-default(type='button', data-dismiss='modal') Guardar
+		#codigo.modal.fade(role='dialog')
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(type='button', data-dismiss='modal') ×
+						h4.modal-title Codigo Generado
+				.modal-body
+					p Some text in the modal.
+				.modal-footer
+					button.btn.btn-default(type='button', data-dismiss='modal') Ok
+					button.btn.btn-default(type='button', data-dismiss='modal') 
+						span.glyphicon.glyphicon-print(aria-hidden='true')

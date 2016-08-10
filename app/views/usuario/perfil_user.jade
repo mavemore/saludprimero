@@ -2,3 +2,29 @@ extends dash_user
 
 block content
 	.col-md-9
+		+panel-default("Datos de Usuario")
+			form.form-horizontal
+				.pull-right.col-md-4
+					a#btnEditar.btn(type='button')
+						span.glyphicon.glyphicon-pencil(aria-hidden='true')
+						small  Editar Información
+					img#imgUsuario.img-rounded.img-thumbnail(src='', alt='foto de perfil de usuario')
+				.col-md-10
+					.form-group.form-inline
+						label.control-label.col-md-2(for='nombreUsuario') Nombre:
+						input#nombreUsuario.form-control.col-md-6(type='text', readonly='')
+					.form-group.form-inline
+						label.control-label.col-md-2(for='apellidoUsuario') Apellido:
+						input#apellidoUsuario.form-control.col-md-6(type='text', readonly='')
+					.form-group.form-inline
+						label.control-label.col-md-2(for='IDUsuario') Cédula:
+						input#IDUsuario.form-control.col-md-6(type='text', readonly='')
+					.form-group.form-inline
+						label.control-label.col-md-2(for='emailUsuario') Email:
+						input#emailUsuario.form-control.col-md-6(type='email', readonly='')
+					.form-group.form-inline
+						label.control-label.col-md-2(for='dirUsuario') Dirección:
+						input#dirUsuario.form-control.col-md-6(type='text', readonly='')
+					.form-group.form-inline
+						label.control-label.col-md-2(for='telUsuario') Teléfono:
+						input#telUsuario.form-control.col-md-6(type='text', readonly='')
