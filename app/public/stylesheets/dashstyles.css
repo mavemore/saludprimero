@@ -3,11 +3,10 @@ html, body {
 }
 
 section {
-  top:4.6%;
 	overflow:auto;
   min-height: 90%;
-	padding: 4.6% 0 0 0; 
-	margin-bottom: 5%;
+	padding: 60px 0 0 0; 
+	margin-bottom: 100px;
 }
 
 #menu{
@@ -20,8 +19,8 @@ a {
 
 footer {
   position: relative;
-  margin-top: -5%; /* negative value of footer height */
-  height: 5%;
+  margin-top: -100px; /* negative value of footer height */
+  height: 100px;
   clear:both;
   padding:2.5% 0;
   background-color: #0a161c;

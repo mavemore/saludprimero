@@ -22,8 +22,8 @@ header{
 
 footer {
   position: relative;
-  margin-top: -5%; /* negative value of footer height */
-  height: 5%;
+  margin-top: -70px; /* negative value of footer height */
+  height: 70px;
   clear:both;
   padding:2.5% 0;
   background-color: #0a161c;
