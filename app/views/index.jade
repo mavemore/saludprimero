@@ -1,5 +1,30 @@
 extends ../node_modules/jade-bootstrap/_bootstrap
 
- block content
-	h1 Welcome to Express
+append styles
+	style
+		include ../public/stylesheets/signin.css
+	
+block body
+	header.container-fluid
+		h1 SaludPrimero S.A
+	.container
+		.panel-body.col-md-5.center
+			form.form-signin
+				.input-group
+					span#basic-addon1.input-group-addon
+						span.glyphicon.glyphicon-user(aria-hidden='true')
+					input.form-control(type='text', placeholder='Nombre de Usuario', aria-describedby='basic-addon1' required='', autofocus='')
+				.input-group
+					span#basic-addon1.input-group-addon
+						span.glyphicon.glyphicon-lock(aria-hidden='true')
+					input.form-control(type='password', placeholder='Password', aria-describedby='basic-addon1' required='')
+				select.form-control
+					option(value='1') Cliente
+					option(value='2') Operario
+					option(value='3') Laboratorista
+				
+				button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+	footer.container-fluid
+			p.text-center
+				small Todos los Derechos Reservados
 

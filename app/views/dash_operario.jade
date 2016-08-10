@@ -1,0 +1,26 @@
+extend dash_layout
+
+block navigation 
+	#menu.col-md-3
+		ul.nav.nav-stacked
+			li(role='presentation')
+				a(href='#')
+					span.glyphicon.glyphicon-plus(aria-hidden='true')
+					|  Ingreso Muestra
+			li(role='presentation')
+				a(href='#')
+					span.glyphicon.glyphicon-edit(aria-hidden='true')
+					|  Modificar Muestra
+			li(role='presentation')
+				a(href='#')
+					span.glyphicon.glyphicon-stats(aria-hidden='true')
+					|  Generar Reportes
+
+block content 
+	.col-md-9
+
+block list
+	li
+		a(href='#')
+			span.glyphicon.glyphicon-off(aria-hidden='true')
+			|  Salir

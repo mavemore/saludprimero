@@ -1,0 +1,29 @@
+html, body {
+  height: 100%;
+}
+
+section {
+  top:4.6%;
+	overflow:auto;
+  min-height: 90%;
+	padding: 4.6% 0 0 0; 
+	margin-bottom: 5%;
+}
+
+#menu{
+	margin-left: -2%;
+}
+
+a {
+  color: #0a161c;
+}
+
+footer {
+  position: relative;
+  margin-top: -5%; /* negative value of footer height */
+  height: 5%;
+  clear:both;
+  padding:2.5% 0;
+  background-color: #0a161c;
+  color: #4d5c63;
+}
