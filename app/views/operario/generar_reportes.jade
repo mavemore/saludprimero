@@ -2,3 +2,29 @@ extend dash_operario
 
 block content 
 	.col-md-9
+		+panel-default("Filtros")
+			.panel-body
+				form.form-inline
+					.form-group
+						label.control-label(for='eslimitadoFecha') ¿Limitar por Fecha?
+						.checkbox
+							label
+							input(type='checkbox', value='')
+				form.form-inline.fechaForm
+					.form-group.col-md-6
+						label.control-label(for='pickDesde') Fecha Desde:
+						input#pickDesde(type='text')
+					.form-group.col-md-6
+						label.control-label(for='pickHasta') Fecha Hasta:
+						input#pickHasta(type='text')
+				form.form-inline
+					.form-group
+						label.control-label(for='enfermedad') Enfermedad:
+						select#enfermedad.form-control
+							option Todas
+				form.form-inline
+					.form-group
+						label.control-label(for='laboratorio') Laboratorio:
+						select#laboratorio.form-control
+							option Todos
+		button#btnGenerar.col-md-4.col-md-offset-4.btn(type='submit') Generar Reporte

@@ -4,12 +4,6 @@ block content
 	.col-md-9
 		+panel-default("Informacion de Paciente")
 			.panel-body
-				form.form-inline(data-toggle='validator', role='form')
-					.form-group.col-md-12
-						label.col-md-1.control-label(for='inputID') Cedula:
-						input#inputID.form-control.col-md-3.required(type='text', maxlength='10', placeholder='Ingrese una cédula', required='')
-						button#btnBuscarId.btn.btn-default(type='button')
-							span.glyphicon.glyphicon-search(aria-hidden='true')
 				form.form-inline
 					.form-group.col-md-6
 						label.col-md-3.control-label(for='nombrePaciente') Nombre:
@@ -36,10 +30,8 @@ block content
 					.form-group.form-inline.col-md-6
 						label.col-md-3.control-label(for='laboratorio') Laboratorio:
 						select#laboratorio.col-md-3.form-control
-		button#btnCodigo.col-md-4.col-md-offset-4.btn(data-toggle="modal",data-target="#codigo")
-			span.glyphicon.glyphicon-barcode(aria-hidden='true')
-			|  Generar Código
-		
+		button#btnDescartar.col-md-3.btn(type='button') Descartar
+		button#btnGuardar.col-md-3.btn(type='submit') Guardar
 		#examenes.modal.fade(tabindex="-1",role="dialog")
 			.modal-dialog
 				.modal-content
@@ -53,18 +45,3 @@ block content
 					.modal-footer
 						button.btn.btn-default(type='button', data-dismiss='modal') Descartar
 						button.btn.btn-default(type='button', data-dismiss='modal') Guardar
-
-		#codigo.modal.fade(tabindex="-1",role="dialog")
-			.modal-dialog
-				.modal-content
-					.modal-header
-						button.close(type="button",data-dismiss="modal")
-							span(aria-hidden="true") &times;
-							span.sr-only Close
-						h4.modal-title Codigo Generado
-					.modal-body
-						#bcTarget
-					.modal-footer
-						button.btn.btn-default(type='button', data-dismiss='modal') Ok
-						button.btn.btn-default(type='button', data-dismiss='modal') 
-							span.glyphicon.glyphicon-print(aria-hidden='true')

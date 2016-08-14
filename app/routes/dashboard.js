@@ -40,6 +40,10 @@ router.get('/operario/modificar-muestras', function(req, res, next) {
   res.render('operario/modificar_muestra', { title: 'Modificacion de Muestras' });
 });
 
+router.get('/operario/modificar-muestras/editar', function(req, res, next) {
+  res.render('operario/editar_muestra', { title: 'Editar Muestra' });
+});
+
 router.get('/operario/reportes', function(req, res, next) {
   res.render('operario/generar_reportes', { title: 'Generacion de Reportes' });
 });

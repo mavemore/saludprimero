@@ -26,3 +26,18 @@ footer {
   background-color: #0a161c;
   color: #4d5c63;
 }
+
+button#btnCodigo{
+  vertical-align:center; 
+  margin-bottom: 2%;
+}
+
+.form-group{
+  margin-bottom: 0.75%;
+  margin-top: 0.75%
+}
+
+#btnDescartar, #btnGuardar{
+  margin: 0 12.5%;
+  margin-bottom: 2%;
+}
