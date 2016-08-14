@@ -11,6 +11,15 @@ var dash = require('./routes/dashboard');
 
 var app = express();
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://admin:SaludPrimero@ds153835.mlab.com:53835/saludprimero30', function(err){
+  if(err){
+    console.log("connection error");
+  }else{
+    console.log("connection succesful");
+  }
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
