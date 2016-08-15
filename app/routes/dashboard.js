@@ -32,15 +32,19 @@ router.get('/operario', function(req, res, next) {
   res.render('operario/dash_operario', { title: 'Bienvenido' });
 });
 
+router.get('/operario/pacientes', function(req, res, next) {
+  res.render('operario/admin_pacientes', { title: 'Administrar Pacientes' });
+});
+
 router.get('/operario/ingreso-muestras', function(req, res, next) {
   res.render('operario/ingreso_muestra', { title: 'Ingreso de Muestras' });
 });
 
-router.get('/operario/modificar-muestras', function(req, res, next) {
-  res.render('operario/modificar_muestra', { title: 'Modificacion de Muestras' });
+router.get('/operario/muestras', function(req, res, next) {
+  res.render('operario/admin_muestra', { title: 'Administrar Muestras' });
 });
 
-router.get('/operario/modificar-muestras/editar', function(req, res, next) {
+router.get('/operario/muestras/editar', function(req, res, next) {
   res.render('operario/editar_muestra', { title: 'Editar Muestra' });
 });
 

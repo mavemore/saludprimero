@@ -12,7 +12,7 @@ block content
 							span.glyphicon.glyphicon-search(aria-hidden='true')
 		+panel-default("Resultados de Busqueda")
 			.panel-body
-				+table-condensed(["Seleccion","Fecha Toma Muestra", "Paciente","Estado"],[])
+				+table-condensed(["Fecha Toma Muestra","Tipo de Muestra" ,"Paciente","Estado", "Ingresar Resultado"],[])
 			button#btnResultado.col-md-4.col-md-offset-4.btn(data-toggle="modal",data-target="#resultado") Ingresar Resultado
 		#resultado.modal.fade(tabindex="-1",role="dialog")
 			.modal-dialog
@@ -23,7 +23,8 @@ block content
 							span.sr-only Close
 						h4.modal-title Ingreso de Resultados de Examen
 					.modal-body
-						+table-condensed(["Examen","Resultados", "Unidades","Valores de Referencia"],[])
+						label Examen 1
+						+table-condensed(["Parámetro","Resultados", "Unidades","Valores de Referencia"],[])
 					.modal-footer
 						button.btn.btn-default(type='button', data-dismiss='modal') Descartar
 						button.btn.btn-default(type='button', data-dismiss='modal') Guardar

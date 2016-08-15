@@ -12,8 +12,9 @@ block content
 							span.glyphicon.glyphicon-search(aria-hidden='true')
 		+panel-default("Resultados de Busqueda")
 			.panel-body
-				+table-condensed(["Seleccion","Fecha Toma Muestra", "Paciente","Estado"],[])
+				+table-condensed(["Seleccion","Fecha Toma Muestra", "Tipo de Muestra","Paciente","Estado", "Notificar"],[])
 			button#btnRecibido.col-md-4.col-md-offset-4.btn(data-toggle="modal",data-target="#alerta") Recibido
+			button#btnNotificar.col-md-4.col-md-offset-4.btn(type="button",data-toggle="modal",data-target="#notificacion") Notificar (Temporal)
 		#alerta.modal.fade(tabindex="-1",role="dialog")
 			.modal-dialog
 				.modal-content
@@ -27,3 +28,18 @@ block content
 					.modal-footer
 						button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
 						button.btn.btn-default(type='button', data-dismiss='modal') Aceptar
+		#notificacion.modal.fade(tabindex="-1",role="dialog")
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(type="button",data-dismiss="modal")
+							span(aria-hidden="true") &times;
+							span.sr-only Close
+						h4.modal-title Crear Notificación
+					.modal-body
+						.form-group
+							label(for='comment') Razón:
+							textarea#comment.form-control(rows='3')
+					.modal-footer
+						button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+						button.btn.btn-default(type='button', data-dismiss='modal') Notificar

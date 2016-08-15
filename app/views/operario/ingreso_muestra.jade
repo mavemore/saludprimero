@@ -5,11 +5,12 @@ block content
 		+panel-default("Informacion de Paciente")
 			.panel-body
 				form.form-inline(data-toggle='validator', role='form')
-					.form-group.col-md-12
-						label.col-md-1.control-label(for='inputID') Cedula:
+					.form-group.col-md-8
+						label.col-md-2.control-label(for='inputID') Cedula:
 						input#inputID.form-control.col-md-3.required(type='text', maxlength='10', placeholder='Ingrese una cédula', required='')
 						button#btnBuscarId.btn.btn-default(type='button')
 							span.glyphicon.glyphicon-search(aria-hidden='true')
+					button#btnNuevo.btn(type="button",data-toggle="modal",data-target="#nuevoPaciente") Agregar Paciente
 				form.form-inline
 					.form-group.col-md-6
 						label.col-md-3.control-label(for='nombrePaciente') Nombre:
@@ -25,6 +26,12 @@ block content
 							label.col-md-3.control-label(for='centromed') Centro Médico:
 							select#centromed.col-md-3.form-control
 						.form-group.col-md-6
+							label.col-md-3.control-label(for='muestras') Tipo de Muestra:
+							select#muestras.col-md-3.form-control
+								option Sangre
+								option Heces
+								option Orina
+						.form-group.col-md-6
 							label.col-md-3.control-label(for='fechaMuestra') Fecha Toma Muestra:
 							input#fechaMuestra.col-md-3.form-control(type='text', required='')
 					.form-group.form-inline.col-md-12
@@ -36,7 +43,8 @@ block content
 					.form-group.form-inline.col-md-6
 						label.col-md-3.control-label(for='laboratorio') Laboratorio:
 						select#laboratorio.col-md-3.form-control
-		button#btnCodigo.col-md-4.col-md-offset-4.btn(data-toggle="modal",data-target="#codigo")
+		button#btnVolver.col-md-3.col-md-offset-2.btn(type="button") Volver
+		button#btnCodigo.col-md-3.col-md-offset-2.btn(data-toggle="modal",data-target="#codigo")
 			span.glyphicon.glyphicon-barcode(aria-hidden='true')
 			|  Generar Código
 		
@@ -68,3 +76,27 @@ block content
 						button.btn.btn-default(type='button', data-dismiss='modal') Ok
 						button.btn.btn-default(type='button', data-dismiss='modal') 
 							span.glyphicon.glyphicon-print(aria-hidden='true')
+		#nuevoPaciente.modal.fade(tabindex="-1",role="dialog")
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(type="button",data-dismiss="modal")
+							span(aria-hidden="true") &times;
+							span.sr-only Close
+						h4.modal-title Registrar Paciente
+					.modal-body
+						.form-group.form-inline
+							label.col-md-3.control-label(for='inputNombre') Nombres:
+							input#inputNombre.form-control.required(type='text', maxlength='30')
+						.form-group.form-inline
+							label.col-md-3.control-label(for='inputApellidos') Apellidos:
+							input#inputApellidos.form-control.required(type='text', maxlength='30')
+						.form-group.form-inline
+							label.col-md-3.control-label(for='inputCedula') Cédula:
+							input#inputCedula.form-control.required(type='text', maxlength='10', minlength='10')
+						.form-group.form-inline
+							label.col-md-3.control-label(for='inputEmail') Correo Electrónico:
+							input#inputEmail.form-control.required(type='email', maxlength='10', minlength='10')
+					.modal-footer
+						button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+						button.btn.btn-default(type='button', data-dismiss='modal') Registrar
