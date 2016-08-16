@@ -13,17 +13,21 @@ block body
 				.input-group
 					span#basic-addon1.input-group-addon
 						span.glyphicon.glyphicon-user(aria-hidden='true')
-					input.form-control(type='text', placeholder='Nombre de Usuario', aria-describedby='basic-addon1' required='', autofocus='')
+					input.form-control(id='inputNombre', type='text', placeholder='Nombre de Usuario', aria-describedby='basic-addon1' required='', autofocus='')
 				.input-group
 					span#basic-addon1.input-group-addon
 						span.glyphicon.glyphicon-lock(aria-hidden='true')
-					input.form-control(type='password', placeholder='Password', aria-describedby='basic-addon1' required='')
-				select.form-control
+					input.form-control(id='inputPassword', type='password', placeholder='Password', aria-describedby='basic-addon1' required='')
+				select.form-control(id='selectRol')
 					option(value='1') Cliente
 					option(value='2') Operario
 					option(value='3') Laboratorista
 				
-				button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+				button.btn.btn-lg.btn-primary.btn-block(type='submit', onclick="move()") Sign in
+	script.
+		function move(){
+			window.location.href='/dashboard/usuario'
+		}
 	footer.container-fluid
 			p.text-center
 				small Todos los Derechos Reservados
