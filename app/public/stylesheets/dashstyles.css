@@ -45,4 +45,9 @@ button#btnCodigo{
 li.active{
   background-color: gray;
   color: white;
-};
+}
+
+.form-group.required label:after {
+  content:"*";
+  color:red;
+}

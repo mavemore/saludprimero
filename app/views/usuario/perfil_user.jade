@@ -4,27 +4,35 @@ block content
 	.col-md-9
 		+panel-default("Datos de Usuario")
 			form.form-horizontal
-				.pull-right.col-md-4
-					a#btnEditar.btn(type='button')
-						span.glyphicon.glyphicon-pencil(aria-hidden='true')
-						small  Editar Información
-					img#imgUsuario.img-rounded.img-thumbnail(src='', alt='foto de perfil de usuario')
-				.col-md-10
-					.form-group.form-inline
-						label.control-label.col-md-2(for='nombreUsuario') Nombres:
-						input#nombreUsuario.form-control.col-md-6(type='text', readonly='', required='')
-					.form-group.form-inline
-						label.control-label.col-md-2(for='apellidoUsuario') Apellidos:
-						input#apellidoUsuario.form-control.col-md-6(type='text', readonly='', required='')
-					.form-group.form-inline
-						label.control-label.col-md-2(for='IDUsuario') Cédula:
-						input#IDUsuario.form-control.col-md-6(type='text', readonly='', required='')
-					.form-group.form-inline
-						label.control-label.col-md-2(for='emailUsuario') Correo Electrónico:
-						input#emailUsuario.form-control.col-md-6(type='email', readonly='', required='')
-					.form-group.form-inline
-						label.control-label.col-md-2(for='dirUsuario') Dirección:
-						input#dirUsuario.form-control.col-md-6(type='text', readonly='')
-					.form-group.form-inline
-						label.control-label.col-md-2(for='telUsuario') Teléfonos:
-						input#telUsuario.form-control.col-md-6(type='text', readonly='')
+				.row
+					.pull-right.col-md-4
+						img#imgUsuario.img-rounded.img-thumbnail(src='', alt='foto de perfil de usuario')
+					.col-md-10
+						h3 Información General
+						.form-group.form-inline.required 
+							label.control-label.col-md-2(for='nombreUsuario') Nombres:
+							input#nombreUsuario.form-control.col-md-6(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+", title="-Solo letras")
+						.form-group.form-inline.required 
+							label.control-label.col-md-2(for='apellidoUsuario') Apellidos:
+							input#apellidoUsuario.form-control.col-md-6(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+", title="-Solo letras")
+						.form-group.form-inline.required 
+							label.control-label.col-md-2(for='IDUsuario') Cédula:
+							input#IDUsuario.form-control.col-md-6(type='text', required='', pattern="[0-9]{10}", title="-Requiere 10 caracteres\n-Solo números", maxlength='10')
+						.form-group.form-inline.required 
+							label.control-label.col-md-2(for='emailUsuario') Correo Electrónico:
+							input#emailUsuario.form-control.col-md-6(type='email', required='', maxlength='30')
+						.form-group.form-inline
+							label.control-label.col-md-2(for='dirUsuario') Dirección:
+							input#dirUsuario.form-control.col-md-6(type='text', maxlength='50')
+						.form-group.form-inline
+							label.control-label.col-md-2(for='telUsuario') Teléfonos:
+							input#telUsuario.form-control.col-md-6(type='text', maxlength='15',pattern="[0-9]+", title="-Solo números")
+						h3 Cambiar Contraseña
+						.form-group.form-inline
+							label.control-label.col-md-2(for='passUsuario') Contraseña:
+							input#passUsuario.form-control.col-md-6(type='password')
+						.form-group.form-inline
+							label.control-label.col-md-2(for='passNueva') Nueva Contraseña:
+							input#passNueva.form-control.col-md-6(type='password')
+
+				button#btnGuardar.col-md-2.col.btn(type="submit") Guardar Cambios
