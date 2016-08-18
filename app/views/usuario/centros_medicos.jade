@@ -8,7 +8,11 @@ block content
 					button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
 						| Elija un Centro Médico
 						span.caret
-					ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+					ul#centro.dropdown-menu(aria-labelledby='dropdownMenu1')
+						each centro, i in centrolist
+							li
+								a(href="#")= centro.nombre
+
 			#contenido
 				form.form-horizontal
 					.form-group.col-sm-12
@@ -33,4 +37,11 @@ block content
 					.form-group.col-sm-12
 						label.col-sm-3.control-label Ubicación del Centro Médico:
 						#mapa
+
+append scripts
+	script.
+		$("#contenido").hide();
+		$('#centro').on('change', function() {
+			$("#contenido").show();
+		});
 		

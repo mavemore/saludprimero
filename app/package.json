@@ -13,7 +13,9 @@
     "express": "^4.13.4",
     "jade": "~1.11.0",
     "jade-bootstrap": "^1.0.6",
+    "mongodb": "^2.2.6",
     "mongoose": "^4.5.8",
+    "monk": "^3.1.1",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0"
   }
