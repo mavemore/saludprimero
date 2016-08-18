@@ -9,6 +9,25 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/app');
 
+//Code oscar
+var mongoose = require('mongoose');
+var session = require('express-session');
+var passport = require('passport');
+var flash = require('connect-flash');
+var validator = require('express-validator');
+var MongoStore = require('connect-mongo')(session);
+
+mongoose.connect('mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode', function(err){
+  if(err){
+    console.log("connection error");
+  }else{
+    console.log("connection succesful");
+  }
+});
+require('./config/passport');
+
+
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var dash = require('./routes/dashboard');
@@ -25,17 +44,43 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+//oscar
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  cookie: { maxAge: 180 * 60 * 1000}
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+//oscar
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*
 // Make our db accessible to our router
 app.use(function(req,res,next){
     req.db = db;
     next();
 });
+*/
+
+//oscar, access to db, no en memoria, metodo optimo
+app.use(function (req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
+  next();
+});
+//oscar
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/dashboard', dash);
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
