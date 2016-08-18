@@ -33,7 +33,15 @@ router.get('/usuario/examenes', function(req, res, next) {
 });
 
 router.get('/usuario/perfil', function(req, res, next) {
-  res.render('usuario/perfil_user', { title: 'Mi Perfil' });
+    var db = req.db;
+    var collection = db.get('datosUser');
+    collection.find({},{},function(e,docs){
+        res.render('usuario/perfil_user',{
+            title: 'Mi Perfil',
+            "usuarioInfoList" : docs
+        });
+    });
+  //res.render('usuario/perfil_user', { title: 'Mi Perfil' });***
 });
 
 // vistas operarios
