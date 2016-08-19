@@ -39,14 +39,26 @@ router.get('/signin', function (req, res, next) {
 
 
 router.post('/signin', passport.authenticate('local.signin', {
-  successRedirect: '/user/profile',
+  //successRedirect: '/user/profile',
   failureRedirect: '/user/signin',
   failureFlash: true
-}));
-
-
-
-module.exports = router;
+}), function (req, res) {
+  if (req.param('rol') === 'cliente'){
+    console.log('vista clientes');
+    res.redirect('/dashboard/usuario');
+    //res.render('usuario/dash_user');
+  }
+  else if (req.param('rol') === 'operario'){
+    console.log('vista operarios');
+    res.redirect('/dashboard/operario');
+    //res.render('operario/dash_operario');
+  }
+  else {
+    console.log('vista laboratorista');
+    res.redirect('/dashboard/laboratorista');
+    //res.render('laboratorista/dash_lab');
+  }
+});
 
 
 function isLoggedIn(req, res, next) {

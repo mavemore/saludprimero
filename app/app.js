@@ -5,9 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 // New Code
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/app');
+//var mongo = require('mongodb');
+//var monk = require('monk');
+//var db = monk('localhost:27017/app');
 
 //Code oscar
 var mongoose = require('mongoose');
@@ -29,7 +29,7 @@ require('./config/passport');
 
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./routes/user');
 var dash = require('./routes/dashboard');
 
 var app = express();
@@ -43,6 +43,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(validator());
 app.use(cookieParser());
 //oscar
 app.use(session({
@@ -75,7 +76,7 @@ app.use(function (req, res, next) {
 //oscar
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/user', users);
 app.use('/dashboard', dash);
 
 

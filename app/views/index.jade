@@ -1,4 +1,4 @@
-
+extends dash_layout
 extends ../node_modules/jade-bootstrap/_bootstrap
 
 append styles
@@ -33,3 +33,8 @@ block body
 			p.text-center
 				small Todos los Derechos Reservados
 
+block list
+	li
+		a(href='/user/logout')
+			span.glyphicon.glyphicon-off(aria-hidden='true')
+			|  Salir

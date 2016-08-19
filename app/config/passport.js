@@ -39,6 +39,7 @@ passport.use('local.signup', new LocalStrategy({
         var newUser = new User();
         newUser.email = email;
         newUser.password= newUser.encryptPassword(password);
+        newUser.rol = req.param('rol');
         newUser.save(function (err, result) {
             if(err){
                 return done(err);
@@ -53,6 +54,7 @@ passport.use('local.signin', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 },function (req, email, password, done) {
+    console.log(req.param('rol'));
     req.checkBody('email', 'Invalid Email').notEmpty().isEmail();
     req.checkBody('password', 'Invalid password').notEmpty();
     var errors = req.validationErrors();
@@ -74,6 +76,9 @@ passport.use('local.signin', new LocalStrategy({
         }
         if(!user.validPassword(password)){
             return done(null, false, {message: 'wrong password'});
+        }
+        if(user.rol != req.param('rol')){
+            return done(null,false, {message: 'Wrong rol'});
         }
         return done(null, user);
     });
