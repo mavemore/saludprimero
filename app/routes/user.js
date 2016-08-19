@@ -44,19 +44,27 @@ router.post('/signin', passport.authenticate('local.signin', {
   failureFlash: true
 }), function (req, res) {
   if (req.param('rol') === 'cliente'){
+    console.log("opcion:" + req.param('rol'));
+    console.log("body:" + req.body.rol);
     console.log('vista clientes');
-    res.redirect('/dashboard/usuario');
-    //res.render('usuario/dash_user');
+    //res.redirect('/dashboard/usuario');
+    res.redirect('/usuario?qs1=cliente');
   }
   else if (req.param('rol') === 'operario'){
+    console.log("opcion:" + req.param('rol'));
+    console.log("body:" + req.body["rol"]);
+    console.log("params:" + req.params["rol"]);
     console.log('vista operarios');
-    res.redirect('/dashboard/operario');
-    //res.render('operario/dash_operario');
+    //res.redirect('/dashboard/operario');
+    res.redirect('/operario');
   }
   else {
+    console.log("opcion:" + req.param('rol'));
+    console.log("body:" + req.body["rol"]);
+    console.log("params:" + req.params["rol"]);
     console.log('vista laboratorista');
-    res.redirect('/dashboard/laboratorista');
-    //res.render('laboratorista/dash_lab');
+    //res.redirect('/dashboard/laboratorista');
+    res.redirect('/laboratorista');
   }
 });
 
@@ -65,6 +73,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()){
     return next();
   }
+  console.log('No ha iniciado sesion, no puede ingresar');
   res.redirect('/');
 }
 
@@ -73,6 +82,7 @@ function notLoggedIn(req, res, next) {
   if (!req.isAuthenticated()){
     return next();
   }
+  console.log('sesion activa ...debe salir');
   res.redirect('/');
 }
 

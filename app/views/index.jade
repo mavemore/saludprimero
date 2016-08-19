@@ -14,15 +14,15 @@ block body
 				.input-group
 					span#basic-addon1.input-group-addon
 						span.glyphicon.glyphicon-user(aria-hidden='true')
-					input.form-control(id='inputNombre', type='text', placeholder='Nombre de Usuario', aria-describedby='basic-addon1' required='', autofocus='')
+					input.form-control(id='inputNombre', type='text', name='email', placeholder='Nombre de Usuario', aria-describedby='basic-addon1' required='', autofocus='')
 				.input-group
 					span#basic-addon1.input-group-addon
 						span.glyphicon.glyphicon-lock(aria-hidden='true')
-					input.form-control(id='inputPassword', type='password', placeholder='Password', aria-describedby='basic-addon1' required='')
-				select.form-control(id='selectRol')
-					option(value='1') Cliente
-					option(value='2') Operario
-					option(value='3') Laboratorista
+					input.form-control(id='inputPassword', type='password', name='password', placeholder='Password', aria-describedby='basic-addon1' required='')
+				select.form-control(id='selectRol', name='rol')
+					option(value='cliente') Cliente
+					option(value='operario') Operario
+					option(value='laboratorista') Laboratorista
 				
 				button.btn.btn-lg.btn-primary.btn-block(type='submit', onclick="move()") Sign in
 	script.

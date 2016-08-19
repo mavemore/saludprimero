@@ -31,6 +31,10 @@ require('./config/passport');
 var routes = require('./routes/index');
 var users = require('./routes/user');
 var dash = require('./routes/dashboard');
+var client = require('./routes/usuario');
+var operator = require('./routes/operario');
+var lab = require('./routes/laboratorista');
+
 
 var app = express();
 
@@ -78,8 +82,9 @@ app.use(function (req, res, next) {
 app.use('/', routes);
 app.use('/user', users);
 app.use('/dashboard', dash);
-
-
+app.use('/usuario', client);
+app.use('/operario', operator);
+app.use('/laboratorista', lab);
 
 
 

@@ -7,20 +7,26 @@ block content
             .alert.alert-danger
                 each msg in messages
                     p= msg
-        form(action='/user/signin', method='post')
-            .form-group
-                label(for='email')  E-mail
-                input#email.form-control(type='text', name='email')
-            .form-group
-                label(for='password') Password
-                input#password.form-control(type='password', name='password')
+        form.form-signin(action='/user/signin', method='post')
+            //.form-group
+            .input-group
+                //label(for='email')  E-mail
+                span#basic-addon1.input-group-addon
+                    span.glyphicon.glyphicon-user(aria-hidden='true')
+                input#email.form-control(type='text', name='email',placeholder='E-Mail')
+            .input-group
+                //label(for='password') Password
+                span#basic-addon1.input-group-addon
+                    span.glyphicon.glyphicon-lock(aria-hidden='true')
+                input#password.form-control(type='password', name='password', placeholder='Password')
                 input(type='hidden', name='_csrf', value=csrfToken)
-            .form-group
-                select.form-control(id='selectRol', name='rol')
+
+            select.form-control(id='selectRol', name='rol')
                     option(value='cliente') Cliente
                     option(value='operario') Operario
                     option(value='laboratorista') Laboratorista
-                button.btn.btn-primary(type='submit') Sign in
+
+            button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
 block list
     li
         a(href='/user/signup')
