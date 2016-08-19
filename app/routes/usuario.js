@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var Centro = require('../models/modCentros');
 
 
 
@@ -18,6 +19,15 @@ router.get('/', isLoggedIn, function(req, res, next) {
 
 router.use('/', notLoggedIn, function (req, res, next) {
     next();
+});
+
+router.get('/centros-medicos', isLoggedIn, function(req, res, next) {
+    Centro.find({}, function(err, centros){
+        res.render('usuario/centros_medicos', { 
+            title: 'SaludPrimero | Centros' 
+            centroslist: centros
+        });
+    });
 });
 
 function isLoggedIn(req, res, next) {

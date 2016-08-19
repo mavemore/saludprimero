@@ -5,15 +5,15 @@ block content
 		+panel-default("Informacion Centros Medicos")
 			.panel-body
 				.dropdown
-					button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+					button#dropdownCentros.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
 						| Elija un Centro Médico
 						span.caret
 					ul#centro.dropdown-menu(aria-labelledby='dropdownMenu1')
-						each centro, i in centrolist
+						each centro in centrolist
 							li
 								a(href="#")= centro.nombre
 
-			#contenido
+			#info-med
 				form.form-horizontal
 					.form-group.col-sm-12
 						label.col-sm-2.control-label Nombre:
@@ -40,8 +40,17 @@ block content
 
 append scripts
 	script.
-		$("#contenido").hide();
-		$('#centro').on('change', function() {
-			$("#contenido").show();
+		$("#info-med").hide();
+		$(".dropdown-menu li a").each(function(){
+			$( this ).click(function(){
+				$(".dropdown-menu li a[class='active']").removeClass("active");
+				$(this).addClass("active");
+				mostrarCentro();
+				$("#dropdownCentros").text($(this).text());
+			});
 		});
+
+		function mostrarCentro(){
+			$("#info-med").show();
+		}
 		
