@@ -17,7 +17,7 @@ router.get('/usuario', function(req, res, next) {
 /*router.get('/usuario/centros-medicos', function(req, res, next) {
   res.render('usuario/centros_medicos', { title: 'Mis Examenes' });
 });*/
-router.get('/usuario/centros-medicos', function(req, res) {
+/*router.get('/usuario/centros-medicos', function(req, res) {
   res.render('usuario/centros_medicos', { title: 'Centros Medicos' });
     
 });
@@ -37,7 +37,7 @@ router.get('/usuario/perfil', function(req, res, next) {
     });
   //res.render('usuario/perfil_user', { title: 'Mi Perfil' });***
 });
-
+*/
 // vistas operarios
 router.get('/operario', function(req, res, next) {
   res.render('operario/dash_operario', { title: 'Bienvenido' });

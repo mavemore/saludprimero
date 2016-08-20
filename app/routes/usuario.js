@@ -5,7 +5,7 @@ var Centro = require('../models/modCentro');
 
 
 
-router.get('/logout', isLoggedIn,function (req, res, next) {
+router.get('/logout', isLoggedIn, function (req, res, next) {
     req.logout();
     res.redirect('/');
 });
@@ -28,6 +28,20 @@ router.get('/centros-medicos', isLoggedIn, function(req, res, next) {
             "centroslist": centros
         });
     });
+});
+
+router.get('/examenes', isLoggedIn, function(req, res, next) {
+  res.render('usuario/examenes_user', { title: 'Mis Examenes' });//cargar examenes de la bbdd
+});
+
+router.get('/perfil', isLoggedIn, function(req, res, next) {
+    modUsuario.find({},{},function(err,user){
+        res.render('usuario/perfil_user',{
+            title: 'Mi Perfil',
+            "usuarioInfoList" : user
+        });
+    });
+  //res.render('usuario/perfil_user', { title: 'Mi Perfil' });***
 });
 
 function isLoggedIn(req, res, next) {
