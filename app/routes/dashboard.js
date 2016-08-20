@@ -26,6 +26,13 @@ router.get('/usuario/centros-medicos', function(req, res) {
   });  
 });
 
+router.get('/usuario/centros-medicos/list', function(req, res) {
+  //res.render('usuario/centros_medicos', { title: 'Centros Medicos' });
+  Centro.find(function(err, centros){
+    res.send(centros);
+  });  
+});
+
 router.get('/usuario/examenes', function(req, res, next) {
   res.render('usuario/examenes_user', { title: 'Mis Examenes' });
 });
