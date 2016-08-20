@@ -3,8 +3,17 @@ $(document).ready(function(){
 });
 
 function init(){
-	$("#contenido").hide();
-	$('#centro').on('change', function() {
-		$("#contenido").show();
+	$("#info-med").hide();
+	$(".dropdown-menu li a").each(function(){
+		$( this ).click(function(){
+			$(".dropdown-menu li a[class='active']").removeClass("active");
+			$(this).addClass("active");
+			mostrarCentro();
+			$("#dropdownCentros").text($(this).text());
+		});
 	});
+}
+
+function mostrarCentro(){
+	$("#info-med").show();
 }

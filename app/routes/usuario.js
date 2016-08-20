@@ -21,13 +21,14 @@ router.use('/', notLoggedIn, function (req, res, next) {
     next();
 });
 
-router.get('/centros-medicos', isLoggedIn, function(req, res, next) {
-    Centro.find({}, function(err, centros){
-        res.render('usuario/centros_medicos', { 
-            title: 'SaludPrimero | Centros', 
-            "centroslist": centros
-        });
+router.get('/centros-medicos', isLoggedIn, function(req, res) {
+  //res.render('usuario/centros_medicos', { title: 'Centros Medicos' });
+  Centro.find(function(err, centros){
+    res.render('usuario/centros_medicos', { 
+      title: 'SaludPrimero | Centros', 
+      centroslist: centros
     });
+  });  
 });
 
 router.get('/examenes', isLoggedIn, function(req, res, next) {

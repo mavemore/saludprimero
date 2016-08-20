@@ -9,10 +9,10 @@ block content
 						| Elija un Centro Médico
 						span.caret
 					ul#centro.dropdown-menu(aria-labelledby='dropdownMenu1')
-						each centro in centrolist
-							li
-								a(href="#")= centro.nombre
-
+						if centroslist
+							each centro in centroslist
+								li
+									a(href="#")= centro.nombre
 			#info-med
 				form.form-horizontal
 					.form-group.col-sm-12
@@ -39,18 +39,5 @@ block content
 						#mapa
 
 append scripts
-	script.
-		$("#info-med").hide();
-		$(".dropdown-menu li a").each(function(){
-			$( this ).click(function(){
-				$(".dropdown-menu li a[class='active']").removeClass("active");
-				$(this).addClass("active");
-				mostrarCentro();
-				$("#dropdownCentros").text($(this).text());
-			});
-		});
-
-		function mostrarCentro(){
-			$("#info-med").show();
-		}
-		
+	script
+		include ../../public/javascripts/usuario.js
