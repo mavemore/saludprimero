@@ -3,4 +3,26 @@ extends dash_user
 block content
 	.col-md-9
 		+panel-default("Examenes Realizados")
-			+table-hover(["Fecha de toma de muestra","Tipo de Examen ","Estado","Adjunto"],[])
+			.table-responsive
+				table#tblExamen.table.table-hover
+					thead
+						tr
+							th Fecha de toma de muestra
+							th Tipo de Muestra
+							th Estado
+							th Adjunto
+					tbody
+						each examen in examenes
+							tr
+								td=examen.fechaMuestra
+								td=examen.tipoMuestra
+								td=examen.estado
+								td 
+									if(examen.estado == "Listo")
+										a(href="#") Ver Adjunto
+
+append scripts
+	script.
+		$(document).ready( function () {
+			$('#tblExamen').DataTable();
+		} );

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Centro = require('../models/modCentro.js');
+var Examen = require('../models/modExamen.js');
 var UserInfo = require('../models/modUsuario.js');
 //este script es solo de prueba, para ver los views
 router.get('/', function(req, res, next) {
@@ -34,7 +35,12 @@ router.get('/usuario/centros-medicos/list', function(req, res) {
 });
 
 router.get('/usuario/examenes', function(req, res, next) {
-  res.render('usuario/examenes_user', { title: 'Mis Examenes' });
+  Examen.find(function(err, list){
+    res.render('usuario/examenes_user', { 
+      title: 'SaludPrimero | Mis Exámenes', 
+      examenes: list
+    });
+  });  
 });
 
 router.get('/usuario/perfil', function(req, res, next) {
