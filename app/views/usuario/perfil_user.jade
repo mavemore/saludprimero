@@ -11,22 +11,22 @@ block content
 						h3 Información General
 						.form-group.form-inline.required 
 							label.control-label.col-md-2(for='nombreUsuario') Nombres:
-							input#nombreUsuario.form-control.col-md-6(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+", title="-Solo letras", value="#{usuarioInfoList[0].Nombres}")
+							input#nombreUsuario.form-control.col-md-6(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+", title="-Solo letras", value="#{usuarioInfoList[0].nombres}")
 						.form-group.form-inline.required 
 							label.control-label.col-md-2(for='apellidoUsuario') Apellidos:
-							input#apellidoUsuario.form-control.col-md-6(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+", title="-Solo letras", value="#{usuarioInfoList[0].Apellidos}")
+							input#apellidoUsuario.form-control.col-md-6(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+", title="-Solo letras", value="#{usuarioInfoList[0].apellidos}")
 						.form-group.form-inline.required 
 							label.control-label.col-md-2(for='IDUsuario') Cédula:
-							input#IDUsuario.form-control.col-md-6(type='text', required='', pattern="[0-9]{10}", title="-Requiere 10 caracteres\n-Solo números", maxlength='10', value="#{usuarioInfoList[0].Cedula}")
+							input#IDUsuario.form-control.col-md-6(type='text', required='', pattern="[0-9]{10}", title="-Requiere 10 caracteres\n-Solo números", maxlength='10', value="#{usuarioInfoList[0].cedula}")
 						.form-group.form-inline.required 
 							label.control-label.col-md-2(for='emailUsuario') Correo Electrónico:
-							input#emailUsuario.form-control.col-md-6(type='email', required='', maxlength='30', value="#{usuarioInfoList[0].Correo}")
+							input#emailUsuario.form-control.col-md-6(type='email', required='', maxlength='30', value="#{usuarioInfoList[0].email}")
 						.form-group.form-inline
 							label.control-label.col-md-2(for='dirUsuario') Dirección:
-							input#dirUsuario.form-control.col-md-6(type='text', maxlength='50', value="#{usuarioInfoList[0].Direccion}")
+							input#dirUsuario.form-control.col-md-6(type='text', maxlength='50', value="#{usuarioInfoList[0].dir}")
 						.form-group.form-inline
 							label.control-label.col-md-2(for='telUsuario') Teléfonos:
-							input#telUsuario.form-control.col-md-6(type='text', maxlength='15',pattern="[0-9]+", title="-Solo números", value="#{usuarioInfoList[0].Telefono}")
+							input#telUsuario.form-control.col-md-6(type='text', maxlength='15',pattern="[0-9]+", title="-Solo números", value="#{usuarioInfoList[0].telf}")
 						h3 Cambiar Contraseña
 						.form-group.form-inline
 							label.control-label.col-md-2(for='passUsuario') Contraseña:

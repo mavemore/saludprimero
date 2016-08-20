@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Centro = require('../models/modCentro.js');
+var UserInfo = require('../models/modUsuario.js');
 //este script es solo de prueba, para ver los views
 router.get('/', function(req, res, next) {
   res.render('dash_layout', { title: 'Bienvenido' });
@@ -29,17 +30,15 @@ router.get('/usuario/examenes', function(req, res, next) {
   res.render('usuario/examenes_user', { title: 'Mis Examenes' });
 });
 
-/*router.get('/usuario/perfil', function(req, res, next) {
-    var db = req.db;
-    var collection = db.get('datosUser');
-    collection.find({},{},function(e,docs){
+router.get('/usuario/perfil', function(req, res, next) {
+    UserInfo.find({},{},function(e,userinf){//aqui se debe hacer el query para seleccionar solo la info del usuario que esta en sesion
         res.render('usuario/perfil_user',{
             title: 'Mi Perfil',
-            "usuarioInfoList" : docs
+            usuarioInfoList : userinf
         });
     });
   //res.render('usuario/perfil_user', { title: 'Mi Perfil' });***
-});*/
+});
 
 // vistas operarios
 router.get('/operario', function(req, res, next) {
