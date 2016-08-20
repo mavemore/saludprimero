@@ -14,12 +14,20 @@ router.get('/', isLoggedIn, function(req, res, next) {
 
 });
 
+router.get('/recepcion-muestras',isLoggedIn, function(req, res, next) {
+    res.render('laboratorista/recepcion_muestra', { title: 'Recepcion de Muestras' });
+});
+
+router.get('/ingreso-resultados', isLoggedIn, function(req, res, next) {
+    res.render('laboratorista/ingreso_resultados', { title: 'Ingreso de Resultados de Muestras' });
+});
+
 router.use('/', notLoggedIn, function (req, res, next) {
     next();
 });
 
 function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()  ){
+    if (req.isAuthenticated() && req.session.rol === "laboratorista" ){
         return next();
     }
     console.log('sesion del laboratorista, no tiene permiso');

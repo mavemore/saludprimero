@@ -43,27 +43,24 @@ router.post('/signin', passport.authenticate('local.signin', {
   failureRedirect: '/user/signin',
   failureFlash: true
 }), function (req, res) {
+  //console.log("normal: " + req.session["rol"]);
+
   if (req.param('rol') === 'cliente'){
-    console.log("opcion:" + req.param('rol'));
-    console.log("body:" + req.body.rol);
+    req.session.rol = "cliente";
+    console.log("session rol: " + req.session.rol);
     console.log('vista clientes');
-    //res.redirect('/dashboard/usuario');
-    res.redirect('/usuario?qs1=cliente');
+    res.redirect('/usuario');
   }
   else if (req.param('rol') === 'operario'){
-    console.log("opcion:" + req.param('rol'));
-    console.log("body:" + req.body["rol"]);
-    console.log("params:" + req.params["rol"]);
+    req.session.rol = "operario";
+    console.log("session rol: " + req.session.rol);
     console.log('vista operarios');
-    //res.redirect('/dashboard/operario');
     res.redirect('/operario');
   }
   else {
-    console.log("opcion:" + req.param('rol'));
-    console.log("body:" + req.body["rol"]);
-    console.log("params:" + req.params["rol"]);
+    req.session.rol = "laboratorista";
+    console.log("session rol: " + req.session.rol);
     console.log('vista laboratorista');
-    //res.redirect('/dashboard/laboratorista');
     res.redirect('/laboratorista');
   }
 });
