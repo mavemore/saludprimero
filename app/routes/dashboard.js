@@ -44,7 +44,7 @@ router.get('/usuario/examenes', function(req, res, next) {
 });
 
 router.get('/usuario/perfil', function(req, res, next) {
-    UserInfo.find({},{},function(e,userinf){//aqui se debe hacer el query para seleccionar solo la info del usuario que esta en sesion
+    UserInfo.find({email:req.session['email']},{},function(e,userinf){//aqui se debe hacer el query para seleccionar solo la info del usuario que esta en sesion
         res.render('usuario/perfil_user',{
             title: 'Mi Perfil',
             usuarioInfoList : userinf

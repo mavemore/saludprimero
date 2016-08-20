@@ -47,6 +47,8 @@ router.post('/signin', passport.authenticate('local.signin', {
     console.log("opcion:" + req.param('rol'));
     console.log("body:" + req.body.rol);
     console.log('vista clientes');
+    req.session['email'] = req.param('email');
+    console.log(req.session['email']);
     //res.redirect('/dashboard/usuario');
     res.redirect('/usuario?qs1=cliente');
   }

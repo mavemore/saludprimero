@@ -7,13 +7,22 @@ mongoose.connect('mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode'
 
 var  userInfo = [
     new User ({
-		nombre: "Edgar Daniel", 
+		nombres: "Edgar Daniel", 
 		apellidos: "Moreira Apolo", 
 		cedula: "1721989356",
 		email: "edgar@hotmail.com",
 		dir: "calle a",
 		telf: "0993100552",
 		img: ""
+    }),
+    new User ({
+        nombres: "Carlos", 
+        apellidos: "Manosalvas", 
+        cedula: "0913546525",
+        email: "carlos@hotmail.com",
+        dir: "calle b",
+        telf: "0992544669",
+        img: ""
     })
 ];
 
