@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-var Centro = require('../models/modCentros');
+var Centro = require('../models/modCentro');
 
 
 
