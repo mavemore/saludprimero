@@ -13,7 +13,7 @@ section {
 	margin-left: -2%;
 }
 
-a {
+#menu ul li a {
   color: #0a161c;
 }
 
@@ -50,4 +50,8 @@ li.active{
 .form-group.required label:after {
   content:"*";
   color:red;
+}
+
+.progress-bar{
+  color: black;
 }
