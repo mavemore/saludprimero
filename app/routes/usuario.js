@@ -24,8 +24,8 @@ router.use('/', notLoggedIn, function (req, res, next) {
 router.get('/centros-medicos', isLoggedIn, function(req, res, next) {
     Centro.find({}, function(err, centros){
         res.render('usuario/centros_medicos', { 
-            title: 'SaludPrimero | Centros' 
-            centroslist: centros
+            title: 'SaludPrimero | Centros', 
+            "centroslist": centros
         });
     });
 });

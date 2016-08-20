@@ -19,7 +19,7 @@ router.get('/usuario', function(req, res, next) {
 });*/
 router.get('/usuario/centros-medicos', function(req, res) {
   res.render('usuario/centros_medicos', { title: 'Centros Medicos' });
-    });
+    
 });
 
 router.get('/usuario/examenes', function(req, res, next) {
