@@ -17,6 +17,10 @@ router.get('/usuario', function(req, res, next) {
   res.render('usuario/dash_user', { title: 'Bienvenido' });
 });
 
+router.get('/usuario/home', function(req, res, next) {
+  res.render('usuario/home', { title: 'Bienvenido' });
+});
+
 router.get('/usuario/centros-medicos', function(req, res) {
   //res.render('usuario/centros_medicos', { title: 'Centros Medicos' });
   Centro.find(function(err, centros){

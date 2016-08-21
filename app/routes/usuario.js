@@ -15,7 +15,7 @@ router.get('/logout', isLoggedIn, function (req, res, next) {
 //vistas usuario
 router.get('/', isLoggedIn, function(req, res, next) {
     console.log(req.isAuthenticated() +  ' :valor');
-    res.render('usuario/dash_user', { title: 'Bienvenido' });
+    res.render('usuario/home', { title: 'Bienvenido' });
 
 });
 
