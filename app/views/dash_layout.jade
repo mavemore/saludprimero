@@ -4,6 +4,7 @@ extends ../node_modules/jade-bootstrap/_bootstrap
 append styles
 	style
 		include ../public/stylesheets/dashstyles.css
+		link(rel='stylesheet', type='text/css', href='//cdn.datatables.net/1.10.12/css/jquery.dataTables.css')
 
 block body
 	body(data-spy="scroll",data-target=".scrollspy")
@@ -49,3 +50,5 @@ append scripts
 				}
 			});
 		}
+	script(type='text/javascript', charset='utf8', src='//cdn.datatables.net/1.10.12/js/jquery.dataTables.js')
+

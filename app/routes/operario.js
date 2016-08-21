@@ -14,7 +14,6 @@ router.get('/', isLoggedIn, function(req, res, next) {
 
 });
 
-
 router.get('/pacientes', isLoggedIn, function(req, res, next) {
     res.render('operario/admin_pacientes', { title: 'Administrar Pacientes' });
 });
@@ -33,6 +32,25 @@ router.get('/muestras/editar', isLoggedIn, function(req, res, next) {
 
 router.get('/reportes', isLoggedIn, function(req, res, next) {
     res.render('operario/generar_reportes', { title: 'Generacion de Reportes' });
+});
+
+
+router.get('/crearNuevo', function(req, resp, next){
+    var password="1234";
+    var nombre= req.param("inputNombre");
+    var apellidos= req.param("inputApellidos");
+    var cedula= req.param("inputCedula");
+    var mail = req.param("inputMail");
+    console.log(password);
+    console.log(nombre);
+    console.log(apellidos);
+    console.log(cedula);
+    //validar que el mail ya no se haya ingresado en la base
+
+    //aqui conecta al schema y los ingresaria
+
+    console.log("Creado Satisfactoriamente");
+
 });
 
 router.use('/', notLoggedIn, function (req, res, next) {

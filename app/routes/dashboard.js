@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var Centro = require('../models/modCentro.js');
+var Examen = require('../models/modExamen.js');
+var UserInfo = require('../models/modUsuario.js');
 //este script es solo de prueba, para ver los views
 router.get('/', function(req, res, next) {
   res.render('dash_layout', { title: 'Bienvenido' });
@@ -14,31 +17,37 @@ router.get('/usuario', function(req, res, next) {
   res.render('usuario/dash_user', { title: 'Bienvenido' });
 });
 
-/*router.get('/usuario/centros-medicos', function(req, res, next) {
-  res.render('usuario/centros_medicos', { title: 'Mis Examenes' });
-});*/
 router.get('/usuario/centros-medicos', function(req, res) {
-    var db = req.db;
-    var collection = db.get('centrocollection');
-    collection.find({},{},function(e,docs){
-        res.render('usuario/centros_medicos', {
-            title: 'Centros Medicos',
-            "centrolist" : docs
-        });
+  //res.render('usuario/centros_medicos', { title: 'Centros Medicos' });
+  Centro.find(function(err, centros){
+    res.render('usuario/centros_medicos', { 
+      title: 'SaludPrimero | Centros', 
+      centroslist: centros
     });
+  });  
+});
+
+router.get('/usuario/centros-medicos/list', function(req, res) {
+  //res.render('usuario/centros_medicos', { title: 'Centros Medicos' });
+  Centro.find(function(err, centros){
+    res.send(centros);
+  });  
 });
 
 router.get('/usuario/examenes', function(req, res, next) {
-  res.render('usuario/examenes_user', { title: 'Mis Examenes' });
+  Examen.find(function(err, list){
+    res.render('usuario/examenes_user', { 
+      title: 'SaludPrimero | Mis Exámenes', 
+      examenes: list
+    });
+  });  
 });
 
 router.get('/usuario/perfil', function(req, res, next) {
-    var db = req.db;
-    var collection = db.get('datosUser');
-    collection.find({},{},function(e,docs){
+    UserInfo.find({email:req.session['email']},{},function(e,userinf){//aqui se debe hacer el query para seleccionar solo la info del usuario que esta en sesion
         res.render('usuario/perfil_user',{
             title: 'Mi Perfil',
-            "usuarioInfoList" : docs
+            usuarioInfoList : userinf
         });
     });
   //res.render('usuario/perfil_user', { title: 'Mi Perfil' });***
