@@ -13,26 +13,26 @@ block content
 		+panel-default("Resultados de Busqueda")
 			.panel-body
 				.table-responsive
-				table#tblMuestras.table.table-hover
-					thead
-						tr
-							th Seleccion
-							th Codigo
-							th Fecha Toma Muestra
-							th Tipo de Muestra
-							th Paciente
-							th Notificar
-					tbody
-						each examen in examenes
+					table#tblMuestras.table.table-hover
+						thead
 							tr
-								td 
-									input(type='checkbox', value='')
-								td codigo
-								td=examen.fechaMuestra
-								td=examen.tipoMuestra
-								td paciente de muestra
-								td 
-									button.btnNotificar.btn(type="button",data-toggle="modal",data-target="#notificacion") Notificar
+								th Seleccion
+								th Codigo
+								th Fecha Toma Muestra
+								th Tipo de Muestra
+								th Paciente
+								th Notificar
+						tbody
+							each examen in examenes
+								tr
+									td 
+										input(type='checkbox', value='')
+									td codigo
+									td=examen.fechaMuestra
+									td=examen.tipoMuestra
+									td paciente de muestra
+									td 
+										button.btnNotificar.btn(type="button",data-toggle="modal",data-target="#notificacion") Notificar
 			button#btnRecibido.col-md-4.col-md-offset-4.btn(data-toggle="modal",data-target="#alerta") Recibido
 		#alerta.modal.fade(tabindex="-1",role="dialog")
 			.modal-dialog
