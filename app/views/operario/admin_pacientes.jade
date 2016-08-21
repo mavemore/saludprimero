@@ -20,7 +20,7 @@ block content
 							span.sr-only Close
 						h4.modal-title Registrar Paciente
 					.modal-body
-						form(action='/crearNuevo', method='post')
+						form(action='/crearNuevo', method='get')
 							.form-group.form-inline
 								label.col-md-3.control-label(for='inputNombre') Nombres:
 								input#inputNombre.form-control.required(type='text', maxlength='30')
@@ -33,9 +33,11 @@ block content
 							.form-group.form-inline
 								label.col-md-3.control-label(for='inputEmail') Correo Electrónico:
 								input#inputEmail.form-control.required(type='email', maxlength='10', minlength='10')
+								button.btn.btn-default(type='submit', data-dismiss='modal') Registrar
+								button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
 					.modal-footer
-						button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
-						button.btn.btn-default(type='submit', data-dismiss='modal') Registrar
+						//button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+						//button.btn.btn-default(type='submit', data-dismiss='modal') Registrar
 		+panel-default("Resultados de Busqueda")
 			.panel-body
 				+table-condensed(["Selección","Nombres","Apellidos", "Cedula","Correo Electrónico", "Editar"],[])
