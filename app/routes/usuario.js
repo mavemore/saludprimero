@@ -45,7 +45,8 @@ router.get('/examenes', isLoggedIn, function(req, res, next) {
     });
 });
 
-router.get('/centros-medicos', isLoggedIn, function(req, res) {
+router.get('/usuario/centros-medicos', isLoggedIn, function(req, res) {
+  //res.render('usuario/centros_medicos', { title: 'Centros Medicos' });
   Centro.find(function(err, centros){
     res.render('usuario/centros_medicos', { 
       title: 'SaludPrimero | Centros', 
@@ -53,6 +54,14 @@ router.get('/centros-medicos', isLoggedIn, function(req, res) {
     });
   });  
 });
+
+router.get('/usuario/centros-medicos/list', isLoggedIn, function(req, res) {
+  //res.render('usuario/centros_medicos', { title: 'Centros Medicos' });
+  Centro.find(function(err, centros){
+    res.send(centros);
+  });  
+});
+
 
 
 router.use('/', notLoggedIn, function (req, res, next) {

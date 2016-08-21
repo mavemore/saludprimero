@@ -83,11 +83,21 @@ router.get('/laboratorista', function(req, res, next) {
 });
 
 router.get('/laboratorista/recepcion-muestras', function(req, res, next) {
-  res.render('laboratorista/recepcion_muestra', { title: 'Recepcion de Muestras' });
+    Examen.find({estado: "Pendiente"},function(err, list){
+    res.render('laboratorista/recepcion_muestra', { 
+      title: 'Recepcion de Muestras', 
+      examenes: list
+    });
+  }); 
 });
 
 router.get('/laboratorista/ingreso-resultados', function(req, res, next) {
-  res.render('laboratorista/ingreso_resultados', { title: 'Ingreso de Resultados de Muestras' });
+    Examen.find({estado: "En Espera"},function(err, list){
+    res.render('laboratorista/ingreso_resultados', { 
+      title: 'Ingreso de Resultados de Muestras', 
+      examenes: list
+    });
+  }); 
 });
 
 module.exports = router;

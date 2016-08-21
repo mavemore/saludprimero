@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var Examen = require('../models/modExamen.js');
 
 router.get('/logout', isLoggedIn,function (req, res, next) {
     req.logout();
@@ -15,11 +16,21 @@ router.get('/', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/recepcion-muestras',isLoggedIn, function(req, res, next) {
-    res.render('laboratorista/recepcion_muestra', { title: 'Recepcion de Muestras' });
+    Examen.find({estado: "Pendiente"},function(err, list){
+    res.render('laboratorista/recepcion_muestra', { 
+      title: 'Recepcion de Muestras', 
+      examenes: list
+    });
+  }); 
 });
 
 router.get('/ingreso-resultados', isLoggedIn, function(req, res, next) {
-    res.render('laboratorista/ingreso_resultados', { title: 'Ingreso de Resultados de Muestras' });
+    Examen.find({estado: "En Espera"},function(err, list){
+    res.render('laboratorista/ingreso_resultados', { 
+      title: 'Ingreso de Resultados de Muestras', 
+      examenes: list
+    });
+  }); 
 });
 
 router.use('/', notLoggedIn, function (req, res, next) {
