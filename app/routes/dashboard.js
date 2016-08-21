@@ -62,6 +62,10 @@ router.get('/operario', function(req, res, next) {
   res.render('operario/dash_operario', { title: 'Bienvenido' });
 });
 
+router.get('/operario/home', function(req, res, next) {
+  res.render('operario/homeOpe', { title: 'Bienvenido' });
+});
+
 router.get('/operario/pacientes', function(req, res, next) {
   res.render('operario/admin_pacientes', { title: 'Administrar Pacientes' });
 });
@@ -84,6 +88,10 @@ router.get('/operario/reportes', function(req, res, next) {
 //vistas laboratorista
 router.get('/laboratorista', function(req, res, next) {
   res.render('laboratorista/dash_lab', { title: 'Bienvenido' });
+});
+
+router.get('/laboratorista/home', function(req, res, next) {
+  res.render('laboratorista/homeLab', { title: 'Bienvenido' });
 });
 
 router.get('/laboratorista/recepcion-muestras', function(req, res, next) {

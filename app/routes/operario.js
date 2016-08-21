@@ -10,7 +10,7 @@ router.get('/logout', isLoggedIn,function (req, res, next) {
 
 router.get('/', isLoggedIn, function(req, res, next) {
     console.log(req.isAuthenticated() +  ' :valor');
-    res.render('operario/dash_operario', { title: 'Bienvenido' });
+    res.render('operario/homeOpe', { title: 'Bienvenido' });
 
 });
 

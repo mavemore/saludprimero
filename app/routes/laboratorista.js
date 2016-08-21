@@ -11,7 +11,7 @@ router.get('/logout', isLoggedIn,function (req, res, next) {
 
 router.get('/', isLoggedIn, function(req, res, next) {
     console.log(req.isAuthenticated() +  ' :valor');
-    res.render('laboratorista/dash_lab', { title: 'Bienvenido' });
+    res.render('laboratorista/homeLab', { title: 'Bienvenido' });
 
 });
 
