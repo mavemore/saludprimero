@@ -47,6 +47,8 @@ router.get('/reportes', isLoggedIn, function(req, res, next) {
 
 router.get('/pacientes/crearNuevo', function(req, res, next){
     var password="1234";
+    var mail="cmanosalvas95@gmail.com";
+    var pass="1236";
     /*var nombre= req.param("inputNombre");
     var apellidos= req.param("inputApellidos");
     var cedula= req.param("inputCedula");
@@ -55,7 +57,7 @@ router.get('/pacientes/crearNuevo', function(req, res, next){
     console.log(nombre);
     console.log(apellidos);
     console.log(cedula);
-    //validar que el mail ya no se haya ingresado en la base
+    *///validar que el mail ya no se haya ingresado en la base
 
 
     //aqui conecta al schema y los ingresaria
@@ -71,13 +73,13 @@ router.get('/pacientes/crearNuevo', function(req, res, next){
     transporter.sendMail(mailOptions, function(error, info){
         if(error){
             // poner que paso un error
-            return console.log(error);
+            return console.log("NO ENVIO VV");
         }
         //poner que fue exitoso
         console.log('Message sent: ' + info.response);
     });
 
-*/
+
     console.log("Creado Satisfactoriamente");
     res.redirect("/operario/pacientes");
 });
