@@ -86,8 +86,14 @@ router.get('/pacientes/crearNuevo', function(req, res, next){
 });
 router.get('/ingreso-muestras/centroslist', function(req,res,next){
     Centro.find(function(err, centros){
-    res.send(centros);
-  });  
+        res.send(centros);
+    });  
+});
+
+router.get('/muestras/editar/centroslist', function(req,res,next){
+    Centro.find(function(err, centros){
+        res.send(centros);
+    });  
 });
 
 router.use('/', notLoggedIn, function (req, res, next) {

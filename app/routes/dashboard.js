@@ -82,6 +82,18 @@ router.get('/operario/muestras/editar', function(req, res, next) {
   res.render('operario/editar_muestra', { title: 'Editar Muestra' });
 });
 
+router.get('/operario/ingreso-muestras/centroslist', function(req,res,next){
+    Centro.find(function(err, centros){
+      res.send(centros);
+    });  
+});
+
+router.get('/operario/muestras/editar/centroslist', function(req,res,next){
+    Centro.find(function(err, centros){
+      res.send(centros);
+    });  
+});
+
 router.get('/operario/reportes', function(req, res, next) {
   res.render('operario/generar_reportes', { title: 'Generacion de Reportes' });
 });

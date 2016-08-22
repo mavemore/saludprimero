@@ -29,25 +29,15 @@ block content
 							input#fechaMuestra.col-md-3.form-control(type='text', required='')
 					.form-group.form-inline.col-md-12
 						label.col-md-3.control-label Exámenes a realizar:
-						button#btnEditarExam.btn.btn-default(type="button",data-toggle="modal",data-target="#examenes")
-							span.glyphicon.glyphicon-pencil(aria-hidden='true')
-					.panel.col-md-12
-						+table-condensed(["#","Tipo de Examen"],[])
+						table#tblExamen
+							.row
+								th Seleccion
+								th Tipo de Examen
 					.form-group.form-inline.col-md-6
 						label.col-md-3.control-label(for='laboratorio') Laboratorio:
 						select#laboratorio.col-md-3.form-control
 		button#btnDescartar.col-md-3.btn(type='button') Descartar
 		button#btnGuardar.col-md-3.btn(type='submit') Guardar
-		#examenes.modal.fade(tabindex="-1",role="dialog")
-			.modal-dialog
-				.modal-content
-					.modal-header
-						button.close(type="button",data-dismiss="modal")
-							span(aria-hidden="true") &times;
-							span.sr-only Close
-						h4.modal-title Seleccion de Examenes
-					.modal-body
-						+table-condensed(["Seleccion","Tipo de Examen"],[])
-					.modal-footer
-						button.btn.btn-default(type='button', data-dismiss='modal') Descartar
-						button.btn.btn-default(type='button', data-dismiss='modal') Guardar
+append scripts
+	script
+		include ../../public/javascripts/operario.js
