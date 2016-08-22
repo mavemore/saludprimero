@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var nodemailer= require('nodemailer');
+var Centro= require('../models/modCentro')
 
 // necesita un transporter, aqui esta para enviar desde un gmail
 var transporter = nodemailer.createTransport("SMTP",{
@@ -62,7 +63,7 @@ router.get('/pacientes/crearNuevo', function(req, res, next){
 
     //aqui conecta al schema y los ingresaria
     //envia mail al usuario
-    var mailOptions = {
+    /*var mailOptions = {
         from: '"Salud Primero S.A" <saludprimerooperario2016@gmail.com>', // sender address
         to: mail, // list of receivers
         subject: 'Creacion de Cuenta', // Subject line
@@ -78,10 +79,15 @@ router.get('/pacientes/crearNuevo', function(req, res, next){
         //poner que fue exitoso
         console.log('Message sent: ' + info.response);
     });
-
+*/
 
     console.log("Creado Satisfactoriamente");
     res.redirect("/operario/pacientes");
+});
+router.get('/ingreso-muestras/centroslist', function(req,res,next){
+    Centro.find(function(err, centros){
+    res.send(centros);
+  });  
 });
 
 router.use('/', notLoggedIn, function (req, res, next) {
