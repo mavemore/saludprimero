@@ -31,11 +31,14 @@ function cargarExamenes(){
 		var $row2= $("<row>");
 		var $row3= $("<row>");
 		var checkbox= $("<input />");
-		checkbox.type("checkbox");
+
+        checkbox.attr("type","checkbox");
 		var checkbox2= $("<input />")
-		checkbox2.type("checkbox");
+
+        checkbox2.attr("type","checkbox");
 		var checkbox3= $("<input />");
-		checkbox3.type("checkbox");
+
+        checkbox3.attr("type","checkbox");
 		var th1=$("<td>");var th2=$("<td>");
 		var th3=$("<td>");var th4=$("<td>");
 		var th5=$("<td>");var th6=$("<td>");
@@ -57,7 +60,7 @@ function cargarExamenes(){
 		var $row= $("<row>");
 		var th=$("<td>");var th2=$("<td>");
 		var checkbox= $("<input />")
-		checkbox.type("checkbox");
+		checkbox.attr("type","checkbox");
 		th2.text("Coprocultivo");
 		row.append(th1);
 		row.append(th2);
@@ -67,8 +70,9 @@ function cargarExamenes(){
 	else if(opcion=="Orina"){
 		var $row= $("<row>");
 		var th=$("<td>");var th2=$("<td>");
-		var checkbox= $("<input />")
-		checkbox.type("checkbox");
+		var checkbox= $("<input />");
+        checkbox.attr("type","checkbox");
+
 		th2.text("Uroanalisis");
 		row.append(th1);
 		row.append(th2);
