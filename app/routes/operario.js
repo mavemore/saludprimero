@@ -1,6 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var nodemailer= require('nodemailer');
+
+// necesita un transporter, aqui esta para enviar desde un gmail
+var transporter = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth:{
+        user: "saludprimerooperario2016@gmail.com",
+        pass: "Sp123456"
+    }
+});
 
 router.get('/logout', isLoggedIn,function (req, res, next) {
     req.logout();
@@ -47,7 +57,26 @@ router.get('/crearNuevo', function(req, resp, next){
     console.log(cedula);
     //validar que el mail ya no se haya ingresado en la base
 
+
     //aqui conecta al schema y los ingresaria
+    //envia mail al usuario
+    var mailOptions = {
+        from: '"Salud Primero S.A" <saludprimerooperario2016@gmail.com>', // sender address
+        to: mail, // list of receivers
+        subject: 'Creacion de Cuenta', // Subject line
+        text: 'Se ha creado exitosamente su cuenta en el sistema de Salud Primero S.A' +
+        'Su Contraseña temporal sera :'+ pass+'' +
+        'Por favor acceder al sistema y cambiar su contraseña', // plaintext body
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            // poner que paso un error
+            return console.log(error);
+        }
+        //poner que fue exitoso
+        console.log('Message sent: ' + info.response);
+    });
+
 
     console.log("Creado Satisfactoriamente");
 
