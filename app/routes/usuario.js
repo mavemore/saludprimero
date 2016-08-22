@@ -8,7 +8,7 @@ var UserInfo = require('../models/modUsuario.js');
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
     req.logout();
-    res.redirect('/');
+    res.redirect('/user/signin');
 });
 
 
@@ -20,20 +20,12 @@ router.get('/', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/perfil', isLoggedIn, function(req, res, next) {
-    /*modUsuario.find({},{},function(err,user){
-        res.render('usuario/perfil_user',{
-            title: 'Mi Perfil',
-            "usuarioInfoList" : user
-        });
-    });*/
     UserInfo.find({email:req.session['email']},{},function(e,userinf){//aqui se debe hacer el query para seleccionar solo la info del usuario que esta en sesion
         res.render('usuario/perfil_user',{
             title: 'Mi Perfil',
             usuarioInfoList : userinf
         });
     });
-
-
 });
 router.get('/examenes', isLoggedIn, function(req, res, next) {
     //res.render('usuario/examenes_user', { title: 'Mis Examenes' });//cargar examenes de la bbdd

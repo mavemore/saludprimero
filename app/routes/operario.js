@@ -45,9 +45,9 @@ router.get('/reportes', isLoggedIn, function(req, res, next) {
 });
 
 
-router.get('/crearNuevo', function(req, resp, next){
+router.get('/pacientes/crearNuevo', function(req, res, next){
     var password="1234";
-    var nombre= req.param("inputNombre");
+    /*var nombre= req.param("inputNombre");
     var apellidos= req.param("inputApellidos");
     var cedula= req.param("inputCedula");
     var mail = req.param("inputMail");
@@ -77,9 +77,9 @@ router.get('/crearNuevo', function(req, resp, next){
         console.log('Message sent: ' + info.response);
     });
 
-
+*/
     console.log("Creado Satisfactoriamente");
-
+    res.redirect("/operario/pacientes");
 });
 
 router.use('/', notLoggedIn, function (req, res, next) {
