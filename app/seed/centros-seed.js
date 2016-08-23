@@ -14,7 +14,8 @@ var  centros = [
 		descripcion: "Centro medico localizado en el centro de la ciudad.",
 		latitud: "-30",
 		longitud: "-79",
-		imagenesURL: ""
+		imagenesURL: ["http://www.elciudadano.gob.ec/wp-content/uploads/2015/07/hosp-abel-gilbert.jpg", "http://www.andes.info.ec/sites/default/files/styles/large/public/9684335869_3441161f78_k.jpg?itok=AayXmXRK"]
+
     }),
     new Centro ({
 		nombre: "SaludPrimero Urdesa", 
@@ -23,7 +24,7 @@ var  centros = [
 		descripcion: "Centro medico localizado en Urdesa.",
 		latitud: "-30",
 		longitud: "-79",
-		imagenesURL: ""
+		imagenesURL: ["http://www.andes.info.ec/sites/default/files/styles/large/public/field/image/hospital_3.jpg?itok=Gpq9Om0h", "http://www.andes.info.ec/sites/default/files/styles/large/public/field/image/hospital%20santo%20domingo%20iess.jpg?itok=ZnH9_tdC"]
     })
 ];
 
