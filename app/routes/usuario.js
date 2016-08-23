@@ -27,6 +27,21 @@ router.get('/perfil', isLoggedIn, function(req, res, next) {
         });
     });
 });
+
+router.post('/perfil/editUser', function(req, res, next){
+    UserInfo.update({email:req.session['email']}, {
+      nombres: req.body.nombres,
+      apellidos: req.body.apellidos,
+      cedula: req.body.cedula,
+      email: req.body.email,
+      dir: req.body.direccion,
+      telf: req.body.telefono
+    },
+    function(err){
+      res.redirect('/usuario/perfil');
+    });
+});
+
 router.get('/examenes', isLoggedIn, function(req, res, next) {
     //res.render('usuario/examenes_user', { title: 'Mis Examenes' });//cargar examenes de la bbdd
     Examen.find(function(err, list){
