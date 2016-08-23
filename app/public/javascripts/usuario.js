@@ -25,11 +25,8 @@ function mostrarCentro(){
 					$("#horarioCentro").text(centro.horarios);
 					$("#dirCentro").text(centro.direccion);
 					$("#descripCentro").text(centro.descripcion);
-					for(var i =0; i<centro.imagenesURL.length;i++){
-						console.log(centro.imagenesURL[i]);
-						var imagen = $("#imagenes").append($('<img>').attr('src', centro.imagenesURL[i]));
-						imagen.css({'width':'25%','height':'25%'});
-					}
+					$("#img1").attr('src', centro.imagenesURL[0]);
+					$("#img2").attr('src', centro.imagenesURL[1]);
 				}
 			});
 		}
