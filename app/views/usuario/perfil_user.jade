@@ -21,7 +21,7 @@ block content
 							input#IDUsuario.form-control.col-md-6(type='text', required='', pattern="[0-9]{10}", title="-Requiere 10 caracteres\n-Solo números", maxlength='10', value="#{usuarioInfoList[0].cedula}", name='cedula')
 						.form-group.form-inline.required 
 							label.control-label.col-md-2(for='emailUsuario') Correo Electrónico:
-							input#emailUsuario.form-control.col-md-6(type='email', required='', maxlength='30', value="#{usuarioInfoList[0].email}", name='email')
+							input#emailUsuario.form-control.col-md-6(type='email', required='', maxlength='30', value="#{usuarioInfoList[0].email}", name='email', readonly='')
 						.form-group.form-inline
 							label.control-label.col-md-2(for='dirUsuario') Dirección:
 							input#dirUsuario.form-control.col-md-6(type='text', maxlength='50', value="#{usuarioInfoList[0].dir}", name='direccion')
