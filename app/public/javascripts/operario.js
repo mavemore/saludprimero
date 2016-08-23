@@ -5,6 +5,7 @@ $(document).ready(function(){
 function init(){
 	mostrarCentro();
 	cargarExamenes();
+    $("#muestras").change(cargarExamenes());
 }
 
 function mostrarCentro(){
@@ -24,58 +25,66 @@ function mostrarCentro(){
 
 function cargarExamenes(){
 	var opcion=$("#muestras option:selected").text();
-	var tabla= $("#tblExamen");
-	var $row= $("<row>");
+	var tabla= $("#tblExamen")
+    tabla.empty();
+    var inicial=$("<tr>");
+    inicial.append($("<td>").text("Seleccion"));
+    inicial.append($("<td>").text("Examenes a realizar"));
+    tabla.append(inicial);
 	if(opcion =="Sangre"){
-		var $row1= $("<row>");
-		var $row2= $("<row>");
-		var $row3= $("<row>");
-		var checkbox= $("<input />");
+		var $row1= $("<tr>");
+		var $row2= $("<tr>");
+		var $row3= $("<tr>");
+		var checkbox= $("<input>");
 
         checkbox.attr("type","checkbox");
-		var checkbox2= $("<input />")
+		var checkbox2= $("<input>")
 
         checkbox2.attr("type","checkbox");
-		var checkbox3= $("<input />");
-
+		var checkbox3= $("<input>");
         checkbox3.attr("type","checkbox");
 		var th1=$("<td>");var th2=$("<td>");
 		var th3=$("<td>");var th4=$("<td>");
 		var th5=$("<td>");var th6=$("<td>");
+        th1.append(checkbox);
+        th3.append(checkbox2);
+        th5.append(checkbox3);
 		th2.text("Hemograma");
 		th4.text("Bioquimica");
 		th6.text("Serologia");
-		row1.append(th1);
-		row1.append(th2);
-		row2.append(th3);
-		row2.append(th4);
-		row3.append(th5);
-		row3.append(th6);
-		tabla.append(row1);
-		tabla.append(row2);
-		tabla.append(row3);
+		$row1.append(th1);
+		$row1.append(th2);
+		$row2.append(th3);
+		$row2.append(th4);
+		$row3.append(th5);
+		$row3.append(th6);
+		tabla.append($row1);
+		tabla.append($row2);
+		tabla.append($row3);
 
 	}
 	else if(opcion =="Heces"){
-		var $row= $("<row>");
+		var $row= $("<tr>");
 		var th=$("<td>");var th2=$("<td>");
-		var checkbox= $("<input />")
+		var checkbox= $("<input >")
 		checkbox.attr("type","checkbox");
+        th.append(checkbox);
 		th2.text("Coprocultivo");
-		row.append(th1);
-		row.append(th2);
-		tabla.append(row);
+		$row.append(th);
+		$row.append(th2);
+		tabla.append($row);
 
 	}
 	else if(opcion=="Orina"){
 		var $row= $("<row>");
 		var th=$("<td>");var th2=$("<td>");
 		var checkbox= $("<input />");
-        checkbox.attr("type","checkbox");
 
+        checkbox.attr("type","checkbox");
+        th.append(checkbox);
 		th2.text("Uroanalisis");
-		row.append(th1);
-		row.append(th2);
-		tabla.append(row);
+		$row.append(th);
+		$row.append(th2);
+		tabla.append($row);
 	}
 }
