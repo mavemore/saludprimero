@@ -46,7 +46,7 @@ router.get('/reportes', isLoggedIn, function(req, res, next) {
 });
 
 
-router.get('/pacientes/crearNuevo', function(req, res, next){
+router.post('/pacientes/crearNuevo', function(req, res, next){
     var password="1234";
     var mail="cmanosalvas95@gmail.com";
     var pass="1236";
@@ -84,6 +84,7 @@ router.get('/pacientes/crearNuevo', function(req, res, next){
     console.log("Creado Satisfactoriamente");
     res.redirect("/operario/pacientes");
 });
+
 router.get('/ingreso-muestras/centroslist', function(req,res,next){
     Centro.find(function(err, centros){
         res.send(centros);
