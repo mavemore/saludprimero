@@ -49,6 +49,7 @@ router.post('/signin', passport.authenticate('local.signin', {
     req.session.rol = "cliente";
     console.log("session rol: " + req.session.rol);
     console.log('vista clientes');
+    req.session['email'] = req.param('email');//este parametro se utiliza para cargar la informacion del usuario segun la sesion
     res.redirect('/usuario');
   }
   else if (req.param('rol') === 'operario'){

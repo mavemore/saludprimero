@@ -8,14 +8,19 @@ require('../config/passport');
 
 var  examenes = [
     new Examen ({
-		fechaMuestra: 08/08/2016, 
-		tipoMuestra: "Sangre",
-		estado: "Listo"
+		fechaMuestra: Date.now, 
+		tipoMuestra: "Orina",
+		estado: "En Espera"
     }),
     new Examen ({
-		fechaMuestra: 08/08/2016, 
+		fechaMuestra: Date.now, 
 		tipoMuestra: "Heces",
 		estado: "Pendiente"
+    }),
+    new Examen ({
+        fechaMuestra: Date.now, 
+        tipoMuestra: "Sangre",
+        estado: "En Espera"
     })
 ];
 

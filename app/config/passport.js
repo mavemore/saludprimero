@@ -68,6 +68,7 @@ passport.use('local.signin', new LocalStrategy({
     }
 
     User.findOne({'email': email}, function (err, user) {
+        console.log("find email" + email);
         if(err){
             return done(err);
         }

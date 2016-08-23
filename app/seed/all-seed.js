@@ -71,24 +71,31 @@ var user1 = new User ({
     password: '1234',
     rol: 'cliente'
 });
+user1.password = user1.encryptPassword(user1.password);
 user1.save();
+
+
 var user2 = new User ({
     email: 'veronica@hotmail.com',
     password: '1234',
     rol: 'operario'
 });
+user2.password = user2.encryptPassword(user2.password);
 user2.save();
+
 var user3 = new User ({
     email: 'edgar@hotmail.com',
     password: '1234',
     rol: 'laboratorista'
 });
+user3.password = user3.encryptPassword(user3.password);
 user3.save();
 var user4 = new User ({
     email: 'carlos@hotmail.com',
     password: '1234',
     rol: 'cliente'
 });
+user4.password = user4.encryptPassword(user4.password);
 user4.save();
 
 

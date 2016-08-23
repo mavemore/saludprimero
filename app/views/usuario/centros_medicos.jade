@@ -9,7 +9,6 @@ block content
 						| Elija un Centro Médico
 						span.caret
 					ul#centro.dropdown-menu(aria-labelledby='dropdownMenu1')
-			#contenido
 						if centroslist
 							each centro in centroslist
 								li
@@ -35,6 +34,8 @@ block content
 					.form-group.col-sm-12
 						label.col-sm-3.control-label Galería de Imágenes:
 						#imagenes
+							img#img1.img-responsive(src"", style='width:25%;height:25%')
+							img#img2.img-responsive(src"", style='width:25%;height:25%')
 					.form-group.col-sm-12
 						label.col-sm-3.control-label Ubicación del Centro Médico:
 						#mapa

@@ -25,11 +25,13 @@ function mostrarCentro(){
 					$("#horarioCentro").text(centro.horarios);
 					$("#dirCentro").text(centro.direccion);
 					$("#descripCentro").text(centro.descripcion);
+					$("#img1").attr('src', centro.imagenesURL[0]);
+					$("#img2").attr('src', centro.imagenesURL[1]);
 				}
 			});
 		}
 	};
-	xhttp.open("GET","/dashboard/usuario/centros-medicos/list", true);
+	xhttp.open("GET","/usuario/centros-medicos/list", true);
 	xhttp.send();
 	$("#info-med").show();
 }

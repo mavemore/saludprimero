@@ -7,7 +7,7 @@ var CentroSchema = new mongoose.Schema({
 	descripcion: String,
 	latitud: String,
 	longitud: String,
-	imagenesURL: String
+	imagenesURL: [String] 
 });
 
 module.exports = mongoose.model("Centro", CentroSchema);

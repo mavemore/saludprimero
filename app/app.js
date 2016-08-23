@@ -16,7 +16,8 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
-
+//mongodb://admin:SaludPrimero@ds153835.mlab.com:53835/saludprimero30
+//'mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode'
 mongoose.connect('mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode', function(err){
   if(err){
     console.log("connection error");
@@ -49,6 +50,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
+
 //oscar
 app.use(session({
   secret: 'secret',

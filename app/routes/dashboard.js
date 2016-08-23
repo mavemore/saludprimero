@@ -17,6 +17,10 @@ router.get('/usuario', function(req, res, next) {
   res.render('usuario/dash_user', { title: 'Bienvenido' });
 });
 
+router.get('/usuario/home', function(req, res, next) {
+  res.render('usuario/home', { title: 'Bienvenido' });
+});
+
 router.get('/usuario/centros-medicos', function(req, res) {
   //res.render('usuario/centros_medicos', { title: 'Centros Medicos' });
   Centro.find(function(err, centros){
@@ -58,6 +62,10 @@ router.get('/operario', function(req, res, next) {
   res.render('operario/dash_operario', { title: 'Bienvenido' });
 });
 
+router.get('/operario/home', function(req, res, next) {
+  res.render('operario/homeOpe', { title: 'Bienvenido' });
+});
+
 router.get('/operario/pacientes', function(req, res, next) {
   res.render('operario/admin_pacientes', { title: 'Administrar Pacientes' });
 });
@@ -74,6 +82,18 @@ router.get('/operario/muestras/editar', function(req, res, next) {
   res.render('operario/editar_muestra', { title: 'Editar Muestra' });
 });
 
+router.get('/operario/ingreso-muestras/centroslist', function(req,res,next){
+    Centro.find(function(err, centros){
+      res.send(centros);
+    });  
+});
+
+router.get('/operario/muestras/editar/centroslist', function(req,res,next){
+    Centro.find(function(err, centros){
+      res.send(centros);
+    });  
+});
+
 router.get('/operario/reportes', function(req, res, next) {
   res.render('operario/generar_reportes', { title: 'Generacion de Reportes' });
 });
@@ -82,12 +102,26 @@ router.get('/laboratorista', function(req, res, next) {
   res.render('laboratorista/dash_lab', { title: 'Bienvenido' });
 });
 
+router.get('/laboratorista/home', function(req, res, next) {
+  res.render('laboratorista/homeLab', { title: 'Bienvenido' });
+});
+
 router.get('/laboratorista/recepcion-muestras', function(req, res, next) {
-  res.render('laboratorista/recepcion_muestra', { title: 'Recepcion de Muestras' });
+    Examen.find({estado: "Pendiente"},function(err, list){
+    res.render('laboratorista/recepcion_muestra', { 
+      title: 'Recepcion de Muestras', 
+      examenes: list
+    });
+  }); 
 });
 
 router.get('/laboratorista/ingreso-resultados', function(req, res, next) {
-  res.render('laboratorista/ingreso_resultados', { title: 'Ingreso de Resultados de Muestras' });
+    Examen.find({estado: "En Espera"},function(err, list){
+    res.render('laboratorista/ingreso_resultados', { 
+      title: 'Ingreso de Resultados de Muestras', 
+      examenes: list
+    });
+  }); 
 });
 
 module.exports = router;

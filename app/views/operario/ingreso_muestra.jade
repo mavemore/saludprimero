@@ -23,6 +23,7 @@ block content
 						input#nombrePaciente.col-md-3.form-control(type='text', name="nombre",  readonly='')
 					.form-group.col-md-6
 						label.col-md-3.control-label(for='apellidoPaciente') Apellido:
+<<<<<<< HEAD
 						input#apellidoPaciente.col-md-3.form-control(type='text', name="apellido", readonly='')
 
 
@@ -71,6 +72,39 @@ block content
 						button.btn.btn-default(type='button') Descartar
 						button.btn.btn-default(type='button') Guardar
 
+=======
+						input#apellidoPaciente.col-md-3.form-control(type='text', readonly='')
+		+panel-default("Informacion de Muestra")
+			.panel-body
+				form
+					.form-group.form-inline
+						.form-group.col-md-6
+							label.col-md-3.control-label(for='centromed') Centro Médico:
+							select#centromed.col-md-3.form-control
+											
+						.form-group.col-md-6
+							label.col-md-3.control-label(for='muestras') Tipo de Muestra:
+							select#muestras.col-md-3.form-control
+								option Sangre
+								option Heces
+								option Orina
+						.form-group.col-md-6
+							label.col-md-3.control-label(for='fechaMuestra') Fecha Toma Muestra:
+							input#fechaMuestra.col-md-3.form-control(type='text', required='')
+					.form-group.form-inline.col-md-12
+						label.col-md-3.control-label Exámenes a realizar:
+						table#tblExamen.table
+							.row
+								th Seleccion
+								th Tipo de Examen
+					.form-group.form-inline.col-md-6
+						label.col-md-3.control-label(for='laboratorio') Laboratorio:
+						select#laboratorio.col-md-3.form-control
+		button#btnVolver.col-md-3.col-md-offset-2.btn(type="button") Volver
+		button#btnCodigo.col-md-3.col-md-offset-2.btn(data-toggle="modal",data-target="#codigo")
+			span.glyphicon.glyphicon-barcode(aria-hidden='true')
+			|  Generar Código
+>>>>>>> 19d33b6ad6d5c78567b7fa2eabbecf115a49ad17
 		#codigo.modal.fade(tabindex="-1",role="dialog")
 			.modal-dialog
 				.modal-content
@@ -86,6 +120,7 @@ block content
 						//button.btn.btn-default(type='button', data-dismiss='modal')
 						button.btn.btn-default(type='button')
 							span.glyphicon.glyphicon-print(aria-hidden='true')
+<<<<<<< HEAD
 
 		form.form-group(action='/operario/ingreso-muestras/nuevo', method='post')
 			#nuevoPaciente.modal.fade(tabindex="-1",role="dialog")
@@ -112,3 +147,33 @@ block content
 						.modal-footer
 							button.btn.btn-default(type='button') Cancelar
 							button.btn.btn-default(type='submit') Registrar
+=======
+		#nuevoPaciente.modal.fade(tabindex="-1",role="dialog")
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(type="button",data-dismiss="modal")
+							span(aria-hidden="true") &times;
+							span.sr-only Close
+						h4.modal-title Registrar Paciente
+					.modal-body
+						.form-group.form-inline
+							label.col-md-3.control-label(for='inputNombre') Nombres:
+							input#inputNombre.form-control.required(type='text', maxlength='30')
+						.form-group.form-inline
+							label.col-md-3.control-label(for='inputApellidos') Apellidos:
+							input#inputApellidos.form-control.required(type='text', maxlength='30')
+						.form-group.form-inline
+							label.col-md-3.control-label(for='inputCedula') Cédula:
+							input#inputCedula.form-control.required(type='text', maxlength='10', minlength='10')
+						.form-group.form-inline
+							label.col-md-3.control-label(for='inputEmail') Correo Electrónico:
+							input#inputEmail.form-control.required(type='email', maxlength='10', minlength='10')
+					.modal-footer
+						button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+						button.btn.btn-default(type='button', data-dismiss='modal') Registrar
+
+append scripts
+	script
+		include ../../public/javascripts/operario.js
+>>>>>>> 19d33b6ad6d5c78567b7fa2eabbecf115a49ad17
