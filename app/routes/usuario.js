@@ -4,6 +4,7 @@ var passport = require('passport');
 var Centro = require('../models/modCentro');
 var Examen = require('../models/modExamen.js');
 var UserInfo = require('../models/modUsuario.js');
+var usuarioLog = require('../models/user_login');
 
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
@@ -40,6 +41,39 @@ router.post('/perfil/editUser', function(req, res, next){
     function(err){
       res.redirect('/usuario/perfil');
     });
+});
+
+router.post('/perfil/newPass', function(req, res, next){
+    //res.send(req.body.newpassword1);
+    if (req.body.newpassword1 === req.body.newpassword2){//chequeo que la nueva contrasena y su validacion sean iguales
+      usuarioCompare1 = new usuarioLog({password:'0'});
+      usuarioPrueba = new usuarioLog({password:req.body.password});
+      usuarioPrueba.password = usuarioPrueba.encryptPassword(usuarioPrueba.password);
+      //var pass = usuarioLog.findOne({email:req.session['email']}, {password: true});
+      //console.log(pass.text());
+      usuarioLog.findOne({email:req.session['email']}, function(err,user){
+        //console.log(user.password);
+        /*usuarioCompare1.password = user.password;
+        usuarioCompare1.password = usuarioCompare1.validPassword(usuarioCompare1.password);
+        console.log(usuarioCompare1.password);*/
+        if(err){res.send('contrasena incorrecta')}
+        if(user.validPassword(user.password)){
+          user.password = user.encryptPassword(newpassword1);
+          console.log(user.password);//no entra aqui
+        }
+      });console.log("hola");
+      //if(){}
+      res.send(usuarioPrueba);
+    /*UserInfo.update({email:req.session['email']},{
+      password: req.body.newpassword1//falta validar que la contrasena es la correcta y que confirmacion de nueva pass
+    },
+    function(err){
+      res.redirect('/usuario/perfil');
+    });*/
+    //res.send('ok');
+    return;
+    }res.send('error');
+    
 });
 
 router.get('/examenes', isLoggedIn, function(req, res, next) {
