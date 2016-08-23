@@ -51,7 +51,7 @@ examen2.save();
 
 var muestra1 = new Muestra ({
     tipo: "sangre",
-    fecha: 08/08/2016
+    fecha: Date.now
 });
 
 muestra1.examenes.push(examen1);
@@ -59,7 +59,7 @@ muestra1.save();
 
 var muestra2 = new Muestra ({
     tipo: "Orina",
-    fecha: 08/08/2016
+    fecha: Date.now
 });
 
 muestra2.examenes.push(examen2);
@@ -72,7 +72,7 @@ var user1 = new User ({
     rol: 'cliente'
 });
 user1.password = user1.encryptPassword(user1.password);
-user1.save();
+
 
 
 var user2 = new User ({
@@ -81,7 +81,7 @@ var user2 = new User ({
     rol: 'operario'
 });
 user2.password = user2.encryptPassword(user2.password);
-user2.save();
+//user2.save();
 
 var user3 = new User ({
     email: 'edgar@hotmail.com',
@@ -89,14 +89,14 @@ var user3 = new User ({
     rol: 'laboratorista'
 });
 user3.password = user3.encryptPassword(user3.password);
-user3.save();
+//user3.save();
 var user4 = new User ({
     email: 'carlos@hotmail.com',
     password: '1234',
     rol: 'cliente'
 });
 user4.password = user4.encryptPassword(user4.password);
-user4.save();
+//user4.save();
 
 
 var paciente1 = new Paciente ({
@@ -126,5 +126,12 @@ paciente2.muestras.push(muestra2);
 
 paciente1.save();
 paciente2.save();
+
+user1.paciente = paciente1._id;
+user4.paciente = paciente2._id;
+user1.save();
+user2.save();
+user3.save();
+user4.save();
 
 //mongoose.disconnect();

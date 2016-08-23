@@ -5,7 +5,8 @@ var Centro = require('../models/modCentro');
 var Examen = require('../models/modExamen.js');
 var UserInfo = require('../models/modUsuario.js');
 var usuarioLog = require('../models/user_login');
-
+var Muestra = require('../models/muestra');
+var Examen = require('../models/examen');
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
     req.logout();
@@ -21,16 +22,49 @@ router.get('/', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/perfil', isLoggedIn, function(req, res, next) {
-    UserInfo.find({email:req.session['email']},{},function(e,userinf){//aqui se debe hacer el query para seleccionar solo la info del usuario que esta en sesion
+    usuarioLog.findOne({ email : req.session['email']})
+        .populate('paciente')
+        .exec(function (err, user) {
+            if (err) return handleError(err);
+            console.log(user.paciente);
+            console.log(user.paciente.nombres);
+            res.render('usuario/perfil_user',{
+                title: 'Mi Perfil',
+                paciente : user.paciente,
+                usuario : user
+            });
+        });
+
+    /*UserInfo.find({email:req.session['email']},{},function(e,userinf){//aqui se debe hacer el query para seleccionar solo la info del usuario que esta en sesion
+
         res.render('usuario/perfil_user',{
             title: 'Mi Perfil',
             usuarioInfoList : userinf
         });
-    });
+    });*/
 });
 
-router.post('/perfil/editUser', function(req, res, next){
-    UserInfo.update({email:req.session['email']}, {
+router.post('/perfil/editUser', function(req, res, next) {
+        usuarioLog.findOne({ email : req.session['email']})
+            .populate('paciente')
+            .exec(function (err, user) {
+                if (err) return handleError(err);
+                console.log(user.paciente);
+                console.log(user.paciente.nombres);
+                console.log(req.body.cedula);
+                user.paciente.nombres =req.body.nombres;
+                user.paciente.apellidos =req.body.apellidos;
+                user.paciente.cedula =req.body.cedula;
+                user.email = req.body.email;
+                user.paciente.direccion =req.body.direccion;
+                user.paciente.telefonos[0] =req.body.telefono;
+                user.paciente.save();
+                user.save();
+            })
+}, function (err) {
+        res.redirect('/usuario/perfil');
+    }
+    /*UserInfo.update({email:req.session['email']}, {
       nombres: req.body.nombres,
       apellidos: req.body.apellidos,
       cedula: req.body.cedula,
@@ -40,8 +74,8 @@ router.post('/perfil/editUser', function(req, res, next){
     },
     function(err){
       res.redirect('/usuario/perfil');
-    });
-});
+    });*/
+);
 
 router.post('/perfil/newPass', function(req, res, next){
     //res.send(req.body.newpassword1);
@@ -77,13 +111,48 @@ router.post('/perfil/newPass', function(req, res, next){
 });
 
 router.get('/examenes', isLoggedIn, function(req, res, next) {
-    //res.render('usuario/examenes_user', { title: 'Mis Examenes' });//cargar examenes de la bbdd
-    Examen.find(function(err, list){
+    console.log("examenes:");
+    var examen = { tipo: "" , fecha:"", estado:""};
+    var m = [];
+    usuarioLog.findOne({ email : req.session['email']})
+        .populate('paciente').populate('muestras').populate('examenes')
+        .exec( function (err, user) {
+            if (err) return handleError(err);
+            var muestras = user.paciente.muestras;
+            for (var i = 0;  i < muestras.length ; i++){
+                console.log("indice i :" + i);
+                Muestra.findOne({_id: muestras[i]}, function (err, muestra) {
+                    console.log("HURAAA: ");
+                    examen.tipo = muestra.tipo;
+                    examen.fecha = muestra.fecha;
+                    console.log(examen);
+                    var examenes = muestra.examenes;
+                    for (var j = 0; j < examenes.length ; j ++){
+                        console.log("indice j :" + j);
+                        console.log("lengt: " + examenes.length);
+                        Examen.findOne({_id: muestra.examenes[j]}, function (err, test) {
+                            console.log("reHURRAAAAAA:");
+                            examen.estado = test.estado;
+                            console.log(examen);
+                            m.push(examen);
+                            return ;
+                        });
+
+
+                    }
+
+                });
+            }
+        });
+    console.log("hello" + m);
+
+
+    /*Examen.find(function(err, list){
         res.render('usuario/examenes_user', {
             title: 'SaludPrimero | Mis Exámenes',
             examenes: list
         });
-    });
+    });*/
 });
 
 router.get('/centros-medicos', isLoggedIn, function(req, res) {

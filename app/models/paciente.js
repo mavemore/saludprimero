@@ -12,4 +12,4 @@ var schema = new Schema({
     foto: String,
 });
 
-module.exports = mongoose.model("pacientesdb", schema);
+module.exports = mongoose.model('pacientesdb', schema);
