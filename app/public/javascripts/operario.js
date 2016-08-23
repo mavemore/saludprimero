@@ -4,9 +4,10 @@ $(document).ready(function(){
 
 function init(){
 	mostrarCentro();
-	cargarExamenes();
-    $("#muestras").change(cargarExamenes());
+
+$("#muestras").change(cargarExamenes());
 }
+$("#muestras").change(cargarExamenes());
 
 function mostrarCentro(){
 	var xhttp = new XMLHttpRequest();
@@ -28,8 +29,8 @@ function cargarExamenes(){
 	var tabla= $("#tblExamen")
     tabla.empty();
     var inicial=$("<tr>");
-    inicial.append($("<td>").text("Seleccion"));
-    inicial.append($("<td>").text("Examenes a realizar"));
+    inicial.append($("<th>").text("Seleccion"));
+    inicial.append($("<th>").text("Examenes a realizar"));
     tabla.append(inicial);
 	if(opcion =="Sangre"){
 		var $row1= $("<tr>");
@@ -78,7 +79,7 @@ function cargarExamenes(){
 	else if(opcion=="Orina"){
 		var $row= $("<row>");
 		var th=$("<td>");var th2=$("<td>");
-		var checkbox= $("<input />");
+		var checkbox= $("<input>");
 
         checkbox.attr("type","checkbox");
         th.append(checkbox);

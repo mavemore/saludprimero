@@ -20,16 +20,16 @@ block content
 							select#centromed.col-md-3.form-control
 						.form-group.col-md-6
 							label.col-md-3.control-label(for='muestras') Tipo de Muestra:
-							select#muestras.col-md-3.form-control
-								option Sangre
+							select#muestras("onchange"="cargarExamenes()").col-md-3.form-control
 								option Heces
+								option Sangre
 								option Orina
 						.form-group.col-md-6
 							label.col-md-3.control-label(for='fechaMuestra') Fecha Toma Muestra:
 							input#fechaMuestra.col-md-3.form-control(type='text', required='')
 					.form-group.form-inline.col-md-12
 						label.col-md-3.control-label Exámenes a realizar:
-						table#tblExamen
+						table#tblExamen.table-striped
 							.row
 								th Seleccion
 								th Tipo de Examen
