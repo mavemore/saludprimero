@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var User = require('../models/user_login');
+var Paciente = require('../models/paciente');
+
+
 
 router.get('/logout', isLoggedIn,function (req, res, next) {
     req.logout();
@@ -19,7 +23,9 @@ router.get('/pacientes', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {
-    res.render('operario/ingreso_muestra', { title: 'Ingreso de Muestras' });
+    var messages = req.flash('error');
+    res.render('operario/ingreso_muestra', { title: 'Ingreso de Muestras', messages: messages, hasErrors: messages.length > 0});
+    //res.render('operario/ingresomuestra');
 });
 
 router.get('/muestras', isLoggedIn,function(req, res, next) {
@@ -33,6 +39,62 @@ router.get('/muestras/editar', isLoggedIn, function(req, res, next) {
 router.get('/reportes', isLoggedIn, function(req, res, next) {
     res.render('operario/generar_reportes', { title: 'Generacion de Reportes' });
 });
+
+router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
+
+    console.log("POST muestra");
+
+});
+router.post('/ingreso-muestras/nuevo',  function (req, res, done) {
+        console.log("POST:" + req.param('emailP'));
+        var email = req.param('emailP');
+        var errors = req.validationErrors();
+        if(errors){
+            var messages = [];
+            console.log("holi error");
+            errors.forEach(function (error) {
+                messages.push(error.msg);
+            });
+            return done(null, false, req.flash('error', messages));
+        }
+
+        User.findOne({'email': email}, function (err, user) {
+            if(err){
+                console.log("Error");
+                return done(err);
+                //return handleError(err);
+            }
+            if(user){
+                console.log("Email en uso, use otro");
+                return done(null, false, {message: 'Email is already in use'});
+                //return res.redirect('/operario/ingreso-muestras');
+            }
+            var newUser = new User();
+            newUser.email = email;
+            newUser.password= newUser.encryptPassword("1234");
+            newUser.rol = "cliente";
+            newUser.save(function (err, result) {
+                if(err){
+                    return done(err);
+                }
+                //return done(null, newUser);
+                console.log("Estamos en pacientes");
+                var paciente = new Paciente();
+                paciente.user = newUser._id;
+                paciente.nombres = req.param('nombreP');
+                paciente.apellidos = req.param('apellidoP');
+                paciente.cedula = req.param('cedulaP');
+                
+                paciente.save(function (err) {
+                    if (err) return handleError(err);
+                    console.log("funciona!");
+                });
+
+            });
+        });
+        res.redirect('/operario/ingreso-muestras');
+    }
+);
 
 
 router.get('/crearNuevo', function(req, resp, next){
@@ -52,11 +114,11 @@ router.get('/crearNuevo', function(req, resp, next){
     console.log("Creado Satisfactoriamente");
 
 });
-
+/*
 router.use('/', notLoggedIn, function (req, res, next) {
     next();
 });
-
+*/
 function isLoggedIn(req, res, next) {
     console.log(req.session.rol);
     if (req.isAuthenticated() && req.session.rol === "operario"){

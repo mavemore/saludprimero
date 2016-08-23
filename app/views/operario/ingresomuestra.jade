@@ -1,0 +1,110 @@
+extend dash_operario
+
+block content
+
+    .col-md-9
+
+        +panel-default("Informacion de Muestra")
+            .panel-body
+                form(action='/operario/ingreso-muestras/nuevaMuestra', method='post')
+                    form.form-inline(data-toggle='validator', role='form')
+                        .form-group.col-md-8
+                            label.col-md-2.control-label(for='inputID') Cedula:
+                            input#inputID.form-control.col-md-3.required(type='text', maxlength='10', name = "cedula", placeholder='Ingrese una cédula', required='')
+                            button#btnBuscarId.btn.btn-default(type='button')
+                                span.glyphicon.glyphicon-search(aria-hidden='true')
+                        button#btnNuevo.btn(type="button",data-toggle="modal",data-target="#nuevoPaciente") Agregar Paciente
+                    form.form-inline
+                        .form-group.col-md-6
+                            label.col-md-3.control-label(for='nombrePaciente') Nombre:
+                            input#nombrePaciente.col-md-3.form-control(type='text', name="nombre",  readonly='')
+                        .form-group.col-md-6
+                            label.col-md-3.control-label(for='apellidoPaciente') Apellido:
+                            input#apellidoPaciente.col-md-3.form-control(type='text', name="apellido", readonly='')
+
+                    .form-group.form-inline
+                        .form-group.col-md-6
+                            label.col-md-3.control-label(for='centromed') Centro Médico:
+                            select#centromed.col-md-3.form-control(name="centro")
+                        .form-group.col-md-6
+                            label.col-md-3.control-label(for='muestras') Tipo de Muestra:
+                            select#muestras.col-md-3.form-control(name="muestra")
+                                option(value='sangre') Sangre
+                                option(value='heces') Heces
+                                option(value='orina') Orina
+                        .form-group.col-md-6
+                            label.col-md-3.control-label(for='fechaMuestra') Fecha Toma Muestra:
+                            input#fechaMuestra.col-md-3.form-control(type='text', name='fecha', required='')
+                    .form-group.form-inline.col-md-12
+                        label.col-md-3.control-label Exámenes a realizar:
+                        button#btnEditarExam.btn.btn-default(type="button",data-toggle="modal",data-target="#examenes")
+                            span.glyphicon.glyphicon-pencil(aria-hidden='true')
+                    .panel.col-md-12
+                        +table-condensed(["#", "Tipo de Examen"],[])
+                    .form-group.form-inline.col-md-6
+                        label.col-md-3.control-label(for='laboratorio') Laboratorio:
+                        select#laboratorio.col-md-3.form-control
+
+                    button#btnVolver.col-md-3.col-md-offset-2.btn(type="button") Volver
+                    button#btnCodigo.col-md-3.col-md-offset-2.btn(data-toggle="modal",data-target="#codigo")
+                        span.glyphicon.glyphicon-barcode(aria-hidden='true')
+                            |  Generar Código
+
+
+
+
+        #examenes.modal.fade(tabindex="-1",role="dialog")
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(type="button",data-dismiss="modal")
+                            span(aria-hidden="true") &times;
+                            span.sr-only Close
+                        h4.modal-title Seleccion de Examenes
+                    .modal-body
+                        +table-condensed(["Seleccion", "Tipo de Examen"],[])
+                    .modal-footer
+                        button.btn.btn-default(type='button') Descartar
+                        button.btn.btn-default(type='button') Guardar
+
+        #codigo.modal.fade(tabindex="-1",role="dialog")
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(type="button",data-dismiss="modal")
+                            span(aria-hidden="true") &times;
+                            span.sr-only Close
+                        h4.modal-title Codigo Generado
+                    .modal-body
+                        #bcTarget
+                    .modal-footer
+                        button.btn.btn-default(type='button') Ok
+                        //button.btn.btn-default(type='button', data-dismiss='modal')
+                        button.btn.btn-default(type='button')
+                            span.glyphicon.glyphicon-print(aria-hidden='true')
+
+        form.form-group(action='/operario/ingreso-muestras/nuevo', method='post')
+            #nuevoPaciente.modal.fade(tabindex="-1",role="dialog")
+                .modal-dialog
+                    .modal-content
+                        .modal-header
+                            button.close(type="button",data-dismiss="modal")
+                                span(aria-hidden="true") &times;
+                                span.sr-only Close
+                            h4.modal-title Registrar Paciente
+                        .modal-body
+                            .form-group.form-inline
+                                label.col-md-3.control-label(for='inputNombre') Nombres:
+                                input#inputNombre.form-control.required(type='text', name='nombreP' , maxlength='30')
+                            .form-group.form-inline
+                                label.col-md-3.control-label(for='inputApellidos') Apellidos:
+                                input#inputApellidos.form-control.required(type='text', name='apellidoP' , maxlength='30')
+                            .form-group.form-inline
+                                label.col-md-3.control-label(for='inputCedula') Cédula:
+                                input#inputCedula.form-control.required(type='text', maxlength='10', name= 'cedulaP' ,minlength='10')
+                            .form-group.form-inline
+                                label.col-md-3.control-label(for='inputEmail') Correo Electrónico:
+                                input#inputEmail.form-control.required(type='email', name='emailP', minlength='10')
+                        .modal-footer
+                            button.btn.btn-default(type='button') Cancelar
+                            button.btn.btn-default(type='submit') Registrar
