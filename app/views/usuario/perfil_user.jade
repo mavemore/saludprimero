@@ -28,7 +28,11 @@ block content
 						.form-group.form-inline
 							label.control-label.col-md-2(for='telUsuario') Teléfonos:
 							input#telUsuario.form-control.col-md-6(type='text', maxlength='15',pattern="[0-9]+", title="-Solo números", value="#{usuarioInfoList[0].telf}", name='telefono')
-
+				button#btnGuardar.col-md-2.col.btn(type="submit") Guardar Cambios
+			form.form-horizontal
+				.row
+					.pull-right.col-md-4
+					.col-md-10
 						h3 Cambiar Contraseña
 						.form-group.form-inline
 							label.control-label.col-md-2(for='passUsuario') Contraseña:
