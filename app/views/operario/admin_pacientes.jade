@@ -20,7 +20,7 @@ block content
 							span.sr-only Close
 						h4.modal-title Registrar Paciente
 					.modal-body
-						form#form-agregar(action='/operario/pacientes/crearNuevo', method='post')
+						form#form-agregar(action='/operario/ingreso-muestras/nuevoPaciente', method='post')
 							.form-group.form-inline
 								label.col-md-3.control-label(for='inputNombre') Nombres:
 								input#inputNombre.form-control.required(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+")
@@ -29,7 +29,7 @@ block content
 								input#inputApellidos.form-control.required(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+")
 							.form-group.form-inline
 								label.col-md-3.control-label(for='inputCedula') Cédula:
-								input#inputCedula.form-control.required(type='text', required='', pattern="[0-9]{10}", title="-Requiere 10 caracteres\n-Solo números", maxlength='10', name='cedula')
+								input#inputCedula.form-control.required(type='text', required='', pattern="[0-9]{10}", title="Requiere 10caracteres\n-Solo-números", maxlength='10', name='cedula')
 							.form-group.form-inline
 								label.col-md-3.control-label(for='inputEmail') Correo Electrónico:
 								input#inputEmail.form-control.required(type='email', required='', maxlength='30', name='email')

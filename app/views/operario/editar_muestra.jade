@@ -13,7 +13,7 @@ block content
 						input#apellidoPaciente.col-md-3.form-control(type='text', readonly='')
 		+panel-default("Informacion de Muestra")
 			.panel-body
-				form
+				form(action='/operario/editar_muestra', method='put')
 					.form-group.form-inline
 						.form-group.col-md-6
 							label.col-md-3.control-label(for='centromed') Centro Médico:
