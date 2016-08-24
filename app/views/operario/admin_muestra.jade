@@ -16,16 +16,16 @@ block content
 								th Estado
 								th Editar
 						tbody
-							if examenes
-								each examen in examenes
+							if hasMuestras
+								each muestra in muestras
 									tr
 										td 
 											input(type='checkbox', value='')
-										td codigo
-										td=examen.fechaMuestra
-										td=examen.tipoMuestra
-										td paciente de muestra
-										td=examen.estado
+										td=muestra.codigo
+										td
+										td
+										td
+										td
 										td Lapiz Glyphicon
 
 			button#btnNuevo.col-md-4.btn(type="button") Agregar Muestra

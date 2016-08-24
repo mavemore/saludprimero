@@ -5,6 +5,7 @@ var passport = require('passport');
 var User = require('../models/user_login');
 var Paciente = require('../models/paciente');
 
+
 var nodemailer= require('nodemailer');
 var Centro= require('../models/modCentro');
 var Muestra=require('../models/muestra');
@@ -42,6 +43,20 @@ router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/muestras', isLoggedIn,function(req, res, next) {
+    var Nombres  = [];
+    Paciente.find(function (err, pacientes) {
+        pacientes.forEach(function (paciente) {
+           //console.log(paciente.nombres);
+            Nombres.push(paciente.nombres);
+            //console.log(Nombres);
+        });
+        console.log(Nombres);
+    });
+    Muestra.find(function (err, muestras) {
+        muestras.forEach(function (muestra) {
+            
+        })
+    });
     res.render('operario/admin_muestra', { title: 'Administrar Muestras' });
 });
 

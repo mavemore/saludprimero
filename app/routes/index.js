@@ -10,5 +10,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Login| SaludPrimero S.A'});
 });
 
-
 module.exports = router;

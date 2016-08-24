@@ -5,8 +5,8 @@ var Centro = require('../models/modCentro');
 var Examen = require('../models/modExamen.js');
 var UserInfo = require('../models/modUsuario.js');
 var usuarioLog = require('../models/user_login');
-var Muestra = require('../models/muestra');
-var Examen = require('../models/examen');
+
+var paciente = require('../models/paciente');
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
     req.logout();
@@ -14,20 +14,23 @@ router.get('/logout', isLoggedIn, function (req, res, next) {
 });
 
 
+
 //vistas usuario
 router.get('/', isLoggedIn, function(req, res, next) {
     console.log(req.isAuthenticated() +  ' :valor');
     res.render('usuario/home', { title: 'Bienvenido' });
 
+
 });
 
 router.get('/perfil', isLoggedIn, function(req, res, next) {
+
     usuarioLog.findOne({ email : req.session['email']})
         .populate('paciente')
         .exec(function (err, user) {
             if (err) return handleError(err);
-            console.log(user.paciente);
-            console.log(user.paciente.nombres);
+            //console.log(user.paciente);
+            //console.log(user.paciente.nombres);
             res.render('usuario/perfil_user',{
                 title: 'Mi Perfil',
                 paciente : user.paciente,
