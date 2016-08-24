@@ -41,13 +41,23 @@ router.get('/pacientes', isLoggedIn, function(req, res, next) {
 });
 
 router.post('/pacientes/eliminar', function(req, res, next){
-    var cedulas = req.body.cedulas;
-    console.log(cedulas);
-    for(var i = 0; i<cedulas.length;i++){
+    //var cedulas = req.body.cedulas;
+    console.log(req.body.cedulas);
+    /*cedulas.forEach(function(unaCedula){
+        console.log(unaCedula);
+        Paciente.remove({cedula:unaCedula}).exec(function (err){
+            if (err) return handleError(err);
+        });
+    });*/
+    Paciente.remove({cedula:req.body.cedulas}).exec(function (err){
+            if (err) return handleError(err);
+        });
+    //res.redirect('/operario/admin_pacientes');
+    /*for(var i = 0; i<cedulas.length;i++){
         Pacientes.remove({cedula:cedulas[i]}).exec(function (err){
             if (err) return handleError(err);
         })
-    }res.send('hola');
+    }res.send('hola');*/
     //Pacientes.remove({cedula:'algo'}).exec(function (err, cedula))
     /*cedulas.each(function(cedula){
         Paciente.remove({cedula:cedula});
@@ -102,30 +112,75 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
     console.log(fecha);
     var cedula = req.body.cedula;
     console.log(cedula);
-    Paciente.findOne({cedula: cedula})
-        .populate('muestras')
-        .exec(function (err, paciente) {
-            console.log(paciente);
-            console.log(paciente.muestras);
-            var muestra1 = new Muestra({
-                tipo : muestra,
-                fecha : fecha,
-                codigo : cedula + fecha,
-                estado : "En Espera"
-            });
-            muestra1.save(function (err) {
-                if (err) return handleError(err);
-                console.log("wardiola");
-                paciente.muestras.push(muestra1);
-                paciente.save(function (err) {
-                    if (err) return handleError(err);
-                    console.log("funciona!");
+    var examen1 = req.body.examen1;
+    var examen2 = req.body.examen2;
+    var examen3 = req.body.examen3;
+    console.log(examen1 + ":examen1");
+    console.log(examen2 + ":examen2");
+    console.log(examen3 + ":examen3");
+
+    if(muestra === "sangre"){
+        Paciente.findOne({cedula: cedula})
+            .populate('muestras')
+            .exec(function (err, paciente) {
+                var muestra1 = new Muestra({
+                    tipo : muestra,
+                    fecha : fecha,
+                    codigo : cedula + fecha,
+                    estado : "En Espera",
+                    examenes:[{
+                        nombre: examen1,
+                        resultados: []
+                    }, {
+                        nombre: examen2,
+                        resultados: []
+                    }, {
+                        nombre: examen3,
+                        resultados: []
+                    }]
                 });
+                muestra1.save(function (err) {
+                    if (err) return handleError(err);
+                    console.log("wardiola");
+                    paciente.muestras.push(muestra1);
+                    paciente.save(function (err) {
+                        if (err) return handleError(err);
+                        console.log("funciona!");
+                    });
+                });
+
+
             });
+    }else {
+        Paciente.findOne({cedula: cedula})
+            .populate('muestras')
+            .exec(function (err, paciente) {
+                var muestra1 = new Muestra({
+                    tipo : muestra,
+                    fecha : fecha,
+                    codigo : cedula + fecha,
+                    estado : "En Espera",
+                    examenes:[{
+                        nombre: examen1,
+                        resultados: []
+                    }]
+                });
+                muestra1.save(function (err) {
+                    if (err) return handleError(err);
+                    console.log("wardiola");
+                    paciente.muestras.push(muestra1);
+                    paciente.save(function (err) {
+                        if (err) return handleError(err);
+                        console.log("funciona!");
+                    });
+                });
 
 
-        });
-    res.redirect('operario/ingreso_muestra');
+            });
+    }
+
+
+    res.redirect('/operario/ingreso-muestras');
 
 });
 router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {

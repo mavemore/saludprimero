@@ -23,13 +23,14 @@ block content
 							input#fechaMuestra.col-md-3.form-control(type='text', required='')
 					.form-group.form-inline.col-md-12
 						label.col-md-3.control-label Exámenes a realizar:
-						table#tblExamen.table-striped
-							.row
-								th Seleccion
-								th Tipo de Examen
+						div#tblExamen
 					.form-group.form-inline.col-md-6
 						label.col-md-3.control-label(for='laboratorio') Laboratorio:
 						select#laboratorio.col-md-3.form-control
+							option Laboratorio 1
+							option Laboratorio 2
+							option Laboratorio 3
+							option Laboratorio 4
 		button#btnDescartar.col-md-3.btn(type='button') Descartar
 		button#btnGuardar.col-md-3.btn(type='submit') Guardar
 append scripts
