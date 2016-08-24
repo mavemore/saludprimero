@@ -103,7 +103,7 @@ router.post('/perfil/newPass', function(req, res, next){
         user.save();
         console.log(user.password);
         console.log(usuarioPrueba.password);
-      })
+      });
       //if(){}
       //res.send(usuarioPrueba);
     /*UserInfo.update({email:req.session['email']},{

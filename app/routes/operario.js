@@ -39,6 +39,13 @@ router.get('/pacientes', isLoggedIn, function(req, res, next) {
 
 });
 
+router.get('/pacientes/prueba', function(req, res, next){
+    Paciente.find().exec(function ( err, paciente){
+        console.log(paciente);
+        res.send(paciente);
+    });
+})
+
 router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {
     var messages = req.flash('error');
     res.render('operario/ingreso_muestra', { title: 'Ingreso de Muestras', messages: messages, hasErrors: messages.length > 0});
@@ -133,6 +140,7 @@ router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
             });
         });
         res.redirect('/operario/ingreso-muestras');
+
     }
 );
 
