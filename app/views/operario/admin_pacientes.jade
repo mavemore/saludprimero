@@ -65,4 +65,8 @@ block content
 								input#inputEmail.form-control.required(type='email', required='', maxlength='30', name='email')
 							button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
 							button.btn.btn-default(type='submit') Registrar
-		
+append scripts
+	script.
+		$(document).ready(function () {
+			$('#tblMuestras').DataTable();
+		});
