@@ -27,20 +27,18 @@ function mostrarCentro(){
 }
 
 function eliminar(){
-	$("#btnEliminar").on('click', function(){
-		var seleccionados = $("input:checked");
-		var cedulas = [];
-		var i = 0;
-		$("input:checked").each(function(){
-			cedulas[i] = $(this).closest("tr").children(':nth-child(4)').text();
-			i++;
+	var borrar = $(".btnEliminar");
+
+	for(var i = 0; i<borrar.length;i++){
+		$(".btnEliminar").get(i).addEventListener('click', function(){
+			var cedulas = $(this).closest("tr").children(':nth-child(3)').text();
+			$.ajax({
+				type: 'POST',
+				url: '/operario/pacientes/eliminar',
+				data: 'cedulas='+ cedulas
+			});
 		});
-		$.ajax({
-			type: 'POST',
-			url: '/operario/pacientes/eliminar',
-			data: 'cedulas='+ cedulas
-		});
-	});
+	}
 }
 
 function cargarExamenes(){
