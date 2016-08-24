@@ -40,16 +40,32 @@ router.get('/pacientes', isLoggedIn, function(req, res, next) {
 
 });
 
-router.get('/pacientes/prueba', function(req, res, next){
-    Paciente.find().exec(function ( err, paciente){
+router.post('/pacientes/eliminar', function(req, res, next){
+    var cedulas = req.body.cedulas;
+    console.log(cedulas);
+    for(var i = 0; i<cedulas.length;i++){
+        Pacientes.remove({cedula:cedulas[i]}).exec(function (err){
+            if (err) return handleError(err);
+        })
+    }res.send('hola');
+    //Pacientes.remove({cedula:'algo'}).exec(function (err, cedula))
+    /*cedulas.each(function(cedula){
+        Paciente.remove({cedula:cedula});
+        console.log('hola');
+    });console.log('hola2');*/
+    /*Paciente.find().exec(function ( err, paciente){
         console.log(paciente);
         res.send(paciente);
-    });
+    });*/
 })
 
 router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {
     var messages = req.flash('error');
-    res.render('operario/ingreso_muestra', { title: 'Ingreso de Muestras', messages: messages, hasErrors: messages.length > 0});
+    Paciente.find().exec(function(err, paciente){
+        res.render('operario/ingreso_muestra', { title: 'Ingreso Muestras',
+            pacientes: paciente});
+    });
+   // res.render('operario/ingreso_muestra', { title: 'Ingreso de Muestras', messages: messages, hasErrors: messages.length > 0});
     //res.render('operario/ingresomuestra');
 });
 
@@ -64,7 +80,11 @@ router.get('/muestras', isLoggedIn,function(req, res, next) {
 });
 
 router.get('/muestras/editar', isLoggedIn, function(req, res, next) {
-    res.render('operario/editar_muestra', { title: 'Editar Muestra' });
+    Paciente.find().exec(function(err, paciente){
+        res.render('operario/editar_muestra', { title: 'Administrar Pacientes',
+            pacientes: paciente});
+    })
+
 });
 
 router.get('/reportes', isLoggedIn, function(req, res, next) {
@@ -127,6 +147,9 @@ router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
                 paciente.user = newUser._id;
                 paciente.nombres = req.param('nombre');
                 paciente.apellidos = req.param('apellido');
+                paciente.direccion= "";
+                paciente.telefono= "";
+                paciente.email= email;
                 paciente.cedula = req.param('cedula');
                 paciente.email = email;
 

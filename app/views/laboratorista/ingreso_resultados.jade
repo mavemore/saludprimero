@@ -14,34 +14,13 @@ block content
 								th Paciente
 								th Resultados
 						tbody
-							tr
-								td codigo
-								td 08/06/2016
-								td Sangre
-								td 1721989364
-								td 
-									button.btnIngresar.btn(type="button",data-toggle="modal",data-target="#resultado") Ingresar Resultado
-							tr
-								td codigo
-								td 08/07/2016
-								td Heces
-								td 1721989364
-								td 
-									button.btnIngresar.btn(type="button",data-toggle="modal",data-target="#resultado") Ingresar Resultado
-							tr
-								td codigo
-								td 08/08/2016
-								td Orina
-								td 1721989364
-								td 
-									button.btnIngresar.btn(type="button",data-toggle="modal",data-target="#resultado") Ingresar Resultado
 
-							if examenes
-								each examen in examenes
+							if muestras
+								each muestra in muestras
 									tr
-										td codigo
-										td=examen.fechaMuestra
-										td=examen.tipoMuestra
+										td=muestra.codigo
+										td=muestra.fecha
+										td=muestra.tipo
 										td paciente de muestra
 										td 
 											button.btnIngresar.btn(type="button",data-toggle="modal",data-target="#resultado") Ingresar Resultado
