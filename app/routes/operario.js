@@ -39,11 +39,23 @@ router.get('/pacientes', isLoggedIn, function(req, res, next) {
 
 });
 
-router.get('/pacientes/prueba', function(req, res, next){
-    Paciente.find().exec(function ( err, paciente){
+router.post('/pacientes/eliminar', function(req, res, next){
+    var cedulas = req.body.cedulas;
+    console.log(cedulas);
+    for(var i = 0; i<cedulas.length;i++){
+        Pacientes.remove({cedula:cedulas[i]}).exec(function (err){
+            if (err) return handleError(err);
+        })
+    }res.send('hola');
+    //Pacientes.remove({cedula:'algo'}).exec(function (err, cedula))
+    /*cedulas.each(function(cedula){
+        Paciente.remove({cedula:cedula});
+        console.log('hola');
+    });console.log('hola2');*/
+    /*Paciente.find().exec(function ( err, paciente){
         console.log(paciente);
         res.send(paciente);
-    });
+    });*/
 })
 
 router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {

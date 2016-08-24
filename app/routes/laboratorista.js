@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var Examen = require('../models/modExamen.js');
+var Muestra = require('../models/muestra.js');
 
 router.get('/logout', isLoggedIn,function (req, res, next) {
     req.logout();
@@ -16,7 +17,7 @@ router.get('/', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/recepcion-muestras',isLoggedIn, function(req, res, next) {
-    Examen.find({estado: "Pendiente"},function(err, list){
+    Muestra.find({estado: "Pendiente"},function(err, list){
     res.render('laboratorista/recepcion_muestra', { 
       title: 'Recepcion de Muestras', 
       muestras: list
@@ -27,6 +28,12 @@ router.get('/recepcion-muestras',isLoggedIn, function(req, res, next) {
 router.post('/recepcion-muestras/notificar',isLoggedIn, function(req, res, next) {
    //Hay que cambiar el estado de la muestra que tenga ese codigo por "Cancelada"
    console.log("notificando "+req.body.codigo);
+   Muestra.findOne({codigo:req.body.codigo}).exec(function (err,muestra){
+      if (err) return handleError(err);
+      muestra.estado = 'Cancelado';
+      muestra.save();
+   });
+   res.redirect('/laboratorista/recepcion-muestras');
 });
 
 router.post('/recepcion-muestras/recibir',isLoggedIn, function(req, res, next) {
@@ -36,10 +43,10 @@ router.post('/recepcion-muestras/recibir',isLoggedIn, function(req, res, next) {
 
 
 router.get('/ingreso-resultados', isLoggedIn, function(req, res, next) {
-    Examen.find({estado: "En Espera"},function(err, list){
+    Muestra.find({estado: "En Espera"},function(err, list){
     res.render('laboratorista/ingreso_resultados', { 
       title: 'Ingreso de Resultados de Muestras', 
-      examenes: list
+      muestras: list
     });
   }); 
 });

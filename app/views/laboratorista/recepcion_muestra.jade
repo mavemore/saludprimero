@@ -19,13 +19,13 @@ block content
 								tr
 									td 
 										input(type='checkbox', value='')
-									td muestra.codigo
-									td muestra.fecha
-									td muestra.tipo
+									td=muestra.codigo
+									td=muestra.fecha
+									td=muestra.tipo
 									td paciente de muestra
 									td 
-										button.btnNotificar.btn(type="button") Notificar
-			button#btnRecibido.col-md-4.col-md-offset-4.btn(type="button") Recibido
+										button.btnNotificar.btn(type="submit") Notificar
+			button#btnRecibido.col-md-4.col-md-offset-4.btn(type="submit") Recibido
 append scripts
 	script
 		include ../../public/javascripts/laboratorista.js

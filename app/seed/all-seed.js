@@ -10,20 +10,20 @@ require('../config/passport');
 
 
 var muestra1 = new Muestra({
-    tipo: "sangre",
+    tipo: "Sangre",
     fecha: Date.now(),
     codigo: "123456",
-    estado: "listo",
+    estado: "Listo",
     examenes: [{
         nombre: "Hemograma",
         resultados: [{
             parametro: "hematocrito",
-            unidades: "25",
+            unidades: "mg/dl",
             medidas: "44.9",
             referencia: "35.2 - 52.8"
         }, {
             parametro: "Linfocitos",
-            unidades: "24",
+            unidades: "mg/dl",
             medidas: "22",
             referencia: "9 - 26"
         }]
@@ -36,17 +36,17 @@ var muestra2 = new Muestra({
     tipo: "Orina",
     fecha: Date.now(),
     codigo: "123457",
-    estado: "pendiente",
+    estado: "Pendiente",
     examenes: [{
         nombre: "examen de orina",
         resultados: [{
             parametro: "cosas de orina 1",
-            unidades: "25",
+            unidades: "mg/dl",
             medidas: "44.9",
             referencia: "35.2 - 52.8"
         }, {
             parametro: "cosas de orina 2",
-            unidades: "24",
+            unidades: "mg/dl",
             medidas: "22",
             referencia: "9 - 26"
         }]

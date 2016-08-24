@@ -1,5 +1,7 @@
 $(document).ready(function(){
+	$('#tblMuestras').DataTable();
 	init();
+	eliminar();
 });
 
 function init(){
@@ -22,6 +24,23 @@ function mostrarCentro(){
 	};
 	xhttp.open("GET","/operario/muestras/editar/centroslist", true);
 	xhttp.send();
+}
+
+function eliminar(){
+	$("#btnEliminar").on('click', function(){
+		var seleccionados = $("input:checked");
+		var cedulas = [];
+		var i = 0;
+		$("input:checked").each(function(){
+			cedulas[i] = $(this).closest("tr").children(':nth-child(4)').text();
+			i++;
+		});
+		$.ajax({
+			type: 'POST',
+			url: '/operario/pacientes/eliminar',
+			data: 'cedulas='+ cedulas
+		});
+	});
 }
 
 function cargarExamenes(){
