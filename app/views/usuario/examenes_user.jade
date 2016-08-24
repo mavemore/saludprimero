@@ -21,13 +21,13 @@ block content
 									td=examen.tipo
 									td
 										.progress
-											if(examen.estado == "Pendiente")
+											if(examen.estado == "pendiente")
 												.progress-bar.progress-bar-danger(role='progressbar', aria-valuenow='33', aria-valuemin='0', aria-valuemax='100', style='width:33%')
 													| Pendiente
 											else if(examen.estado == "En Espera")
 												.progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='66', aria-valuemin='0', aria-valuemax='100', style='width:66%')
 													| En Espera
-											else if(examen.estado == "Listo")
+											else if(examen.estado == "listo")
 												.progress-bar.progress-bar-success(role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width:100%')
 													| Listo
 											else 
