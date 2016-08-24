@@ -3,6 +3,7 @@ $(document).ready(function(){
 	init();
 	eliminarPaciente();
 	eliminarMuestra();
+	editarMuestra();
 });
 
 function init(){
@@ -55,6 +56,22 @@ function eliminarMuestra(){
 				data: 'codigo='+ codigo
 			});
 			window.location.replace("/operario/muestras");
+		});
+	}
+}
+
+function editarMuestra(){
+	var editar = $(".btnEditar");
+
+	for(var i = 0; i<editar.length;i++){
+		$(".btnEditar").get(i).addEventListener('click', function(){
+			var codigo = $(this).closest("tr").children(':nth-child(1)').text();
+			$.ajax({
+				type: 'POST',
+				url: '/operario/muestras/editar_muestra',
+				data: 'codigo='+ codigo
+			});
+			//window.location.replace("/editar_muestra");
 		});
 	}
 }

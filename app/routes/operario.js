@@ -41,32 +41,10 @@ router.get('/pacientes', isLoggedIn, function(req, res, next) {
 });
 
 router.post('/pacientes/eliminar', function(req, res, next){
-    //var cedulas = req.body.cedulas;
     console.log(req.body.cedulas);
-    /*cedulas.forEach(function(unaCedula){
-        console.log(unaCedula);
-        Paciente.remove({cedula:unaCedula}).exec(function (err){
-            if (err) return handleError(err);
-        });
-    });*/
     Paciente.remove({cedula:req.body.cedulas}).exec(function (err){
             if (err) return handleError(err);
         });
-    //res.redirect('/operario/admin_pacientes');
-    /*for(var i = 0; i<cedulas.length;i++){
-        Pacientes.remove({cedula:cedulas[i]}).exec(function (err){
-            if (err) return handleError(err);
-        })
-    }res.send('hola');*/
-    //Pacientes.remove({cedula:'algo'}).exec(function (err, cedula))
-    /*cedulas.each(function(cedula){
-        Paciente.remove({cedula:cedula});
-        console.log('hola');
-    });console.log('hola2');*/
-    /*Paciente.find().exec(function ( err, paciente){
-        console.log(paciente);
-        res.send(paciente);
-    });*/
 })
 
 router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {
@@ -278,9 +256,9 @@ router.get('/ingreso-muestras/centroslist', function(req,res,next){
     });  
 });
 
-router.put('/editar_muestra', function(req, res, next){
-
-    res.render('operario/editar_muestra')
+router.post('/muestras/editar_muestra', function(req, res, next){
+    console.log(req.body.codigo);
+    res.render('operario/editar_muestra');
 });
 
 router.get('/muestras/editar/centroslist', function(req,res,next){
