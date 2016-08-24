@@ -1,81 +1,81 @@
 extend dash_operario
 
 block content
-	.col-md-9
-		+panel-default("Informacion de Muestra")
-			.panel-body
-				form(action='/operario/ingreso-muestras/nuevaMuestra', method='post')
-					.form-group.col-md-12.form-inline
-						label.col-md-2.control-label(for='pacientes') Paciente:
-						select#pacientes.col-md-4.form-control
-						button#btnNuevo.col-md-3.col-md-offset-2.btn(type="button",data-toggle="modal",data-target="#nuevoPaciente") Agregar Paciente
-					.form-group.form-inline
-						.form-group.col-md-6
-							label.col-md-3.control-label(for='centromed') Centro Médico:
-							select#centromed.col-md-3.form-control(name="centro")
-						.form-group.col-md-6
-							label.col-md-3.control-label(for='muestras') Tipo de Muestra:
-							select#muestras.col-md-3.form-control(name="muestra")
-								option(value='sangre') Sangre
-								option(value='heces') Heces
-								option(value='orina') Orina
-						.form-group.col-md-6
-							label.col-md-3.control-label(for='fechaMuestra') Fecha Toma Muestra:
-							input#fechaMuestra.col-md-3.form-control(type='text', name='fecha', required='')
-					.form-group.form-inline.col-md-12
-						label.col-md-12.control-label Exámenes a realizar:
-						table#tblExamen.table-striped
-							.row
-								th Seleccion
-								th Tipo de Examen
-					.form-group.form-inline.col-md-12
-						label.col-md-3.control-label(for='laboratorio') Laboratorio:
-						select#laboratorio.col-md-3.form-control
-					button#btnVolver.col-md-3.col-md-offset-2.btn(type="button") Volver
-					button#btnCodigo.col-md-3.col-md-offset-2.btn(data-toggle="modal",data-target="#codigo")
-						span.glyphicon.glyphicon-barcode(aria-hidden='true')
-							|  Generar Código
-		#codigo.modal.fade(tabindex="-1",role="dialog")
-			.modal-dialog
-				.modal-content
-					.modal-header
-						button.close(type="button",data-dismiss="modal")
-							span(aria-hidden="true") &times;
-							span.sr-only Close
-						h4.modal-title Codigo Generado
-					.modal-body
-						#bcTarget
-					.modal-footer
-						button.btn.btn-default(type='button') Ok
-						//button.btn.btn-default(type='button', data-dismiss='modal')
-						button.btn.btn-default(type='button')
-							span.glyphicon.glyphicon-print(aria-hidden='true')
-		#nuevoPaciente.modal.fade(tabindex="-1",role="dialog")
-			.modal-dialog
-				.modal-content
-					.modal-header
-						button.close(type="button",data-dismiss="modal")
-							span(aria-hidden="true") &times;
-							span.sr-only Close
-						h4.modal-title Registrar Paciente
-					.modal-body
-						form#form-agregar(action='/operario/ingreso-muestras/nuevoPaciente', method='post')
-							.form-group.form-inline
-								label.col-md-3.control-label(for='inputNombre') Nombres:
-								input#inputNombre.form-control.required(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+")
-							.form-group.form-inline
-								label.col-md-3.control-label(for='inputApellidos') Apellidos:
-								input#inputApellidos.form-control.required(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+")
-							.form-group.form-inline
-								label.col-md-3.control-label(for='inputCedula') Cédula:
-								input#inputCedula.form-control.required(type='text', required='', pattern="[0-9]{10}", title="Requiere 10caracteres\n-Solo-números", maxlength='10', name='cedula')
-							.form-group.form-inline
-								label.col-md-3.control-label(for='inputEmail') Correo Electrónico:
-								input#inputEmail.form-control.required(type='email', required='', maxlength='30', name='email')
-							button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
-							button.btn.btn-default(type='submit') Registrar
+    .col-md-9
+        +panel-default("Informacion de Muestra")
+            .panel-body
+                form(action='/operario/ingreso-muestras/nuevaMuestra', method='post')
+                    .form-group.col-md-12.form-inline
+                        label.col-md-2.control-label(for='pacientes') Paciente:
+                        select#pacientes.col-md-4.form-control
+                        button#btnNuevo.col-md-3.col-md-offset-2.btn(type="button",data-toggle="modal",data-target="#nuevoPaciente") Agregar Paciente
+                    .form-group.form-inline
+                        .form-group.col-md-6
+                            label.col-md-3.control-label(for='centromed') Centro Médico:
+                            select#centromed.col-md-3.form-control(name="centro")
+                        .form-group.col-md-6
+                            label.col-md-3.control-label(for='muestras') Tipo de Muestra:
+                            select#muestras("onchange"="cargarExamenes()").col-md-3.form-control(name="muestra")
+                                option(value='sangre') Sangre
+                                option(value='heces') Heces
+                                option(value='orina') Orina
+                        .form-group.col-md-6
+                            label.col-md-3.control-label(for='fechaMuestra') Fecha Toma Muestra:
+                            input#fechaMuestra.col-md-3.form-control(type='date', name='fecha', required='')
+                    .form-group.form-inline.col-md-12
+                        label.col-md-12.control-label Exámenes a realizar:
+                        table#tblExamen.table-striped
+                            .row
+                                th Seleccion
+                                th Tipo de Examen
+                    .form-group.form-inline.col-md-12
+                        label.col-md-3.control-label(for='laboratorio') Laboratorio:
+                        select#laboratorio.col-md-3.form-control
+                            option Laboratorio 1
+                            option Laboratorio 2
+                            option Laboratorio 3
+                            option Laboratorio 4
+    button#btnVolver.col-md-3.col-md-offset-2.btn(type="button") Volver
+        button#btnCodigo.col-md-3.col-md-offset-2.btn(data-toggle="modal",data-target="#codigo")
+            span.glyphicon.glyphicon-barcode(aria-hidden='true')
+                |  Generar Código
+    #codigo.modal.fade(tabindex="-1",role="dialog")
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button.close(type="submit")
+                        span(aria-hidden="true") &times;
+                        span.sr-only Close
+                    h4.modal-title Codigo Generado
+                .modal-body
+                    #bcTarget
+                .modal-footer
+    #nuevoPaciente.modal.fade(tabindex="-1",role="dialog")
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button.close(type="button",data-dismiss="modal")
+                        span(aria-hidden="true") &times;
+                        span.sr-only Close
+                    h4.modal-title Registrar Paciente
+                .modal-body
+                    form#form-agregar(action='/operario/ingreso-muestras/nuevoPaciente', method='post')
+                        .form-group.form-inline
+                            label.col-md-3.control-label(for='inputNombre') Nombres:
+                            input#inputNombre.form-control.required(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+")
+                        .form-group.form-inline
+                            label.col-md-3.control-label(for='inputApellidos') Apellidos:
+                            input#inputApellidos.form-control.required(type='text', required='', maxlength='30',pattern="[a-zA-Z ]+")
+                        .form-group.form-inline
+                            label.col-md-3.control-label(for='inputCedula') Cédula:
+                            input#inputCedula.form-control.required(type='text', required='', pattern="[0-9]{10}", title="Requiere 10caracteres\n-Solo-números", maxlength='10', name='cedula')
+                        .form-group.form-inline
+                            label.col-md-3.control-label(for='inputEmail') Correo Electrónico:
+                            input#inputEmail.form-control.required(type='email', required='', maxlength='30', name='email')
+                        button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+                        button.btn.btn-default(type='submit') Registrar
 
 append scripts
-	script
-		include ../../public/javascripts/operario.js
+    script
+        include ../../public/javascripts/operario.js
 
