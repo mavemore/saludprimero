@@ -31,19 +31,7 @@ block content
 				|Agregar Muestra
 			//button#btnNuevo.col-md-4.btn(type="button", href = "/operario/ingreso-muestras") Agregar Muestra
 			//button#btnEliminar.col-md-4.col-md-offset-4.btn(data-toggle="modal",data-target="#alerta") Eliminar
-		#alerta.modal.fade(tabindex="-1",role="dialog")
-			.modal-dialog
-				.modal-content
-					.modal-header
-						button.close(type="button",data-dismiss="modal")
-							span(aria-hidden="true") &times;
-							span.sr-only Close
-						h4.modal-title Alerta
-					.modal-body
-						¿Está seguro que desea eliminar las muestras seleccionadas?
-					.modal-footer
-						button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
-						button.btn.btn-default(type='button', data-dismiss='modal') Aceptar
+			
 append scripts
 	script
 		include ../../public/javascripts/operario.js

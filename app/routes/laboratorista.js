@@ -65,6 +65,7 @@ router.post('/ingreso-resultados/examenes', isLoggedIn, function(req, res, next)
           var json = JSON.parse(examenes);
           console.log(json);
           mus.examenes = json;
+          mus.estado = 'Listo';
           mus.save();
       });
     });
