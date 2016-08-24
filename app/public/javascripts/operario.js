@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	$('#tblMuestras').DataTable();
 	init();
-	eliminar();
+	eliminarPaciente();
+	eliminarMuestra();
 });
 
 function init(){
@@ -26,7 +27,7 @@ function mostrarCentro(){
 	xhttp.send();
 }
 
-function eliminar(){
+function eliminarPaciente(){
 	var borrar = $(".btnEliminar");
 
 	for(var i = 0; i<borrar.length;i++){
@@ -38,6 +39,22 @@ function eliminar(){
 				data: 'cedulas='+ cedulas
 			});
 			window.location.replace("/operario/pacientes");
+		});
+	}
+}
+
+function eliminarMuestra(){
+	var borrar = $(".btnEliminarMuestra");
+
+	for(var i = 0; i<borrar.length;i++){
+		$(".btnEliminarMuestra").get(i).addEventListener('click', function(){
+			var codigo = $(this).closest("tr").children(':nth-child(1)').text();
+			$.ajax({
+				type: 'POST',
+				url: '/operario/muestras/eliminar',
+				data: 'codigo='+ codigo
+			});
+			window.location.replace("/operario/muestras");
 		});
 	}
 }

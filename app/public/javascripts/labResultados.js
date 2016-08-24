@@ -156,11 +156,13 @@ function ingresarResultados(){
 				i++;
 			});
 			datos[2] = {nombre: nombre3, resultados: resultados3};
-		}console.log(datos);
+		}
+		var json = JSON.stringify(datos);
+		console.log(json);
 		$.ajax({
 			type: 'POST',
 			url: '/laboratorista/ingreso-resultados/examenes',
-			data: 'examenes='+ datos + '&codigo=' + codigo
+			data: 'examenes='+ json + '&codigo=' + codigo
 		});
 	});
 }

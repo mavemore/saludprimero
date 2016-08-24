@@ -62,11 +62,12 @@ router.post('/ingreso-resultados/examenes', isLoggedIn, function(req, res, next)
     Muestra.find({codigo:req.body.codigo}).exec(function (err,muestra){
       if (err) return handleError(err);
       muestra.forEach(function(mus){
-        examenes.forEach(function(examen){
-          console.log(examen.nombre);
-        });
-      })
-    })
+          var json = JSON.parse(examenes);
+          console.log(json);
+          mus.examenes = json;
+          mus.save();
+      });
+    });
 });
 
 router.use('/', notLoggedIn, function (req, res, next) {

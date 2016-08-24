@@ -97,6 +97,10 @@ router.get('/muestras/editar', isLoggedIn, function(req, res, next) {
 
 });
 
+router.post('/muestras/eliminar', function(req, res, next){
+    console.log("hola");
+})
+
 router.get('/reportes', isLoggedIn, function(req, res, next) {
     res.render('operario/generar_reportes', { title: 'Generacion de Reportes' });
 });
