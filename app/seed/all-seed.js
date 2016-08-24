@@ -5,7 +5,7 @@ var Muestra = require('../models/muestra');
 var mongoose = require('mongoose');
 //mongodb://admin:SaludPrimero@ds153835.mlab.com:53835/saludprimero30
 //mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode
-mongoose.connect('mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode');
+mongoose.connect('mongodb://admin:SaludPrimero@ds153835.mlab.com:53835/saludprimero30');
 require('../config/passport');
 
 
@@ -53,7 +53,29 @@ var muestra2 = new Muestra({
     }]
 });
 
+var muestra3 = new Muestra({
+    tipo: "Heces",
+    fecha: Date.now(),
+    codigo: "123458",
+    estado: "Pendiente",
+    examenes: []
+});
 
+var muestra4 = new Muestra({
+    tipo: "Sangre",
+    fecha: Date.now(),
+    codigo: "123459",
+    estado: "Pendiente",
+    examenes: []
+});
+
+var muestra5 = new Muestra({
+    tipo: "Orina",
+    fecha: Date.now(),
+    codigo: "1234560",
+    estado: "Pendiente",
+    examenes: []
+});
 
 var user1 = new User ({
     email: 'oscarmoreno_ds@hotmail.com',
@@ -117,9 +139,15 @@ paciente2.muestras.push(muestra2);
 
 muestra1.paciente = paciente1._id;
 muestra2.paciente = paciente2._id;
+muestra3.paciente = paciente2._id;
+muestra4.paciente = paciente2._id;
+muestra5.paciente = paciente2._id;
 
 muestra1.save();
 muestra2.save();
+muestra3.save();
+muestra4.save();
+muestra5.save();
 
 paciente1.save();
 paciente2.save();

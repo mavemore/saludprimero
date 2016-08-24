@@ -14,7 +14,7 @@ var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
 //mongodb://admin:SaludPrimero@ds153835.mlab.com:53835/saludprimero30
 //'mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode'
-mongoose.connect('mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode', function(err){
+mongoose.connect('mongodb://admin:SaludPrimero@ds153835.mlab.com:53835/saludprimero30', function(err){
   if(err){
     console.log("connection error");
   }else{

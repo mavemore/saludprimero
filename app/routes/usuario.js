@@ -80,24 +80,8 @@ router.post('/perfil/editUser', function(req, res, next) {
 router.post('/perfil/newPass', function(req, res, next){
     //res.send(req.body.newpassword1);
     if (req.body.newpassword1 === req.body.newpassword2){//chequeo que la nueva contrasena y su validacion sean iguales
-      //usuarioCompare1 = new usuarioLog({password:'0'});
       usuarioPrueba = new usuarioLog({password:req.body.newpassword1});
       usuarioPrueba.password = usuarioPrueba.encryptPassword(usuarioPrueba.password);
-      //var pass = usuarioLog.findOne({email:req.session['email']}, {password: true});
-      //console.log(pass.text());
-      //usuarioLog.findOne({email:req.session['email']}, function(err,user){
-        //console.log(user.password);
-        /*usuarioCompare1.password = user.password;
-        usuarioCompare1.password = usuarioCompare1.validPassword(usuarioCompare1.password);
-        console.log(usuarioCompare1.password);*/
-        /*if(err){
-          res.send('contrasena incorrecta');
-          return;
-        }else{*/
-        //user.password = usuarioPrueba.password;
-        //console.log(usuarioPrueba.password);//no entra aqui
-        //}
-      //});
       usuarioLog.findOne({email:req.session['email']}).exec(function (err, user){
         if (err) return handleError(err);
         user.password = usuarioPrueba.password;
@@ -105,14 +89,7 @@ router.post('/perfil/newPass', function(req, res, next){
         console.log(user.password);
         console.log(usuarioPrueba.password);
       });
-      //if(){}
-      //res.send(usuarioPrueba);
-    /*UserInfo.update({email:req.session['email']},{
-      password: req.body.newpassword1//falta validar que la contrasena es la correcta y que confirmacion de nueva pass
-    },
-    function(err){
-      res.redirect('/usuario/perfil');
-    });*/
+     
     res.redirect('/usuario/perfil');
     return;
     }res.send('Las contrasenas ingresadas no son iguales');

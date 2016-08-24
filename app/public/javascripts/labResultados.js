@@ -163,6 +163,6 @@ function ingresarResultados(){
 			type: 'POST',
 			url: '/laboratorista/ingreso-resultados/examenes',
 			data: 'examenes='+ json + '&codigo=' + codigo
-		});
+		});window.location.replace("/laboratorista/ingreso-resultados");
 	});
 }

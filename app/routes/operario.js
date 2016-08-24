@@ -58,7 +58,7 @@ router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/muestras', isLoggedIn,function(req, res, next) {
-    Muestra.find(function (err, muestras) {
+    Muestra.find({estado:'Pendiente'},function (err, muestras) {
         //console.log(muestras);
         res.render('operario/admin_muestra', { title: 'Administrar Muestras',
             muestras: muestras
