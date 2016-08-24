@@ -81,7 +81,7 @@ router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {
 
 router.get('/muestras', isLoggedIn,function(req, res, next) {
     Muestra.find(function (err, muestras) {
-        console.log(muestras);
+        //console.log(muestras);
         res.render('operario/admin_muestra', { title: 'Administrar Muestras',
             muestras: muestras
         });
@@ -98,7 +98,10 @@ router.get('/muestras/editar', isLoggedIn, function(req, res, next) {
 });
 
 router.post('/muestras/eliminar', function(req, res, next){
-    console.log("hola");
+    console.log(req.body.codigo);
+    Muestra.remove({codigo:req.body.codigo}).exec(function (err){
+            if (err) return handleError(err);
+    })
 })
 
 router.get('/reportes', isLoggedIn, function(req, res, next) {
