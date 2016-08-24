@@ -7,7 +7,7 @@ block content
                 form(action='/operario/ingreso-muestras/nuevaMuestra', method='post')
                     .form-group.col-md-12.form-inline
                         label.col-md-2.control-label(for='pacientes') Paciente:
-                        select#pacientes.col-md-4.form-control
+                        select#pacientes.col-md-4.form-control(name="cedula")
                             if pacientes
                                 each paciente in pacientes
                                     option(value=paciente.cedula)=paciente.cedula

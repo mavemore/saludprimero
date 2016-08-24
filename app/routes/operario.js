@@ -100,7 +100,32 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
     console.log(muestra);
     var fecha = req.body.fecha;
     console.log(fecha);
+    var cedula = req.body.cedula;
+    console.log(cedula);
+    Paciente.findOne({cedula: cedula})
+        .populate('muestras')
+        .exec(function (err, paciente) {
+            console.log(paciente);
+            console.log(paciente.muestras);
+            var muestra1 = new Muestra({
+                tipo : muestra,
+                fecha : fecha,
+                codigo : cedula + fecha,
+                estado : "En Espera"
+            });
+            muestra1.save(function (err) {
+                if (err) return handleError(err);
+                console.log("wardiola");
+                paciente.muestras.push(muestra1);
+                paciente.save(function (err) {
+                    if (err) return handleError(err);
+                    console.log("funciona!");
+                });
+            });
 
+
+        });
+    res.redirect('operario/ingreso_muestra');
 
 });
 router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
