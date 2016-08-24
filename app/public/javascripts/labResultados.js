@@ -156,7 +156,7 @@ function ingresarResultados(){
 				i++;
 			});
 			datos[2] = {nombre: nombre3, resultados: resultados3};
-		}
+		}console.log(datos);
 		$.ajax({
 			type: 'POST',
 			url: '/laboratorista/ingreso-resultados/examenes',
