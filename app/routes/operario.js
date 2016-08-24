@@ -104,7 +104,7 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
     console.log(examen2 + ":examen2");
     console.log(examen3 + ":examen3");
 
-    if(muestra === "sangre"){
+    if(muestra === "Sangre"){
         Paciente.findOne({cedula: cedula})
             .populate('muestras')
             .exec(function (err, paciente) {
