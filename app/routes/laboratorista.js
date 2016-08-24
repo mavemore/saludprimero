@@ -57,8 +57,16 @@ router.get('/ingreso-resultados', isLoggedIn, function(req, res, next) {
 });
 
 router.post('/ingreso-resultados/examenes', isLoggedIn, function(req, res, next) {
-    console.log("ingresado: " + req.body.examenes[0]);
+    var examenes = req.body.examenes;
     console.log("codigo: " + req.body.codigo);
+    Muestra.find({codigo:req.body.codigo}).exec(function (err,muestra){
+      if (err) return handleError(err);
+      muestra.forEach(function(mus){
+        examenes.forEach(function(examen){
+          console.log(examen.nombre);
+        });
+      })
+    })
 });
 
 router.use('/', notLoggedIn, function (req, res, next) {
