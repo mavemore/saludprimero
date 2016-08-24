@@ -59,8 +59,8 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
 
 });
 router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
-        console.log("POST:" + req.param('emailP'));
-        var email = req.param('emailP');
+        console.log("POST:" + req.param('email'));
+        var email = req.param('email');
         var errors = req.validationErrors();
         if(errors){
             var messages = [];
@@ -100,9 +100,9 @@ router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
                 console.log("Estamos en pacientes");
                 var paciente = new Paciente();
                 paciente.user = newUser._id;
-                paciente.nombres = req.param('nombreP');
-                paciente.apellidos = req.param('apellidoP');
-                paciente.cedula = req.param('cedulaP');
+                paciente.nombres = req.param('nombre');
+                paciente.apellidos = req.param('apellido');
+                paciente.cedula = req.param('cedula');
                 
                 paciente.save(function (err) {
                     if (err) return handleError(err);
