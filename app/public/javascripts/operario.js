@@ -45,64 +45,44 @@ function cargarExamenes(){
 	var opcion=$("#muestras option:selected").text();
 	var tabla= $("#tblExamen")
     tabla.empty();
-    var inicial=$("<tr>");
-    inicial.append($("<th>").text("Seleccion"));
-    inicial.append($("<th>").text("Examenes a realizar"));
-    tabla.append(inicial);
+
 	if(opcion =="Sangre"){
-		var $row1= $("<tr>");
-		var $row2= $("<tr>");
-		var $row3= $("<tr>");
-		var checkbox= $("<input>");
+		var $row1= $("<input >");
+		var $row2= $("<input >");
+		var $row3= $("<input >");
+		$row1.attr("type","text");
+		$row1.attr("value","Hemograma");
+		$row1.attr("readonly","readonly");
+		$row1.attr("name","examen1");
+		$row2.attr("type","text");
+		$row2.attr("value","Bioquimica");
+		$row2.attr("readonly","readonly");
+		$row1.attr("name","examen2");
+		$row3.attr("type","text");
+		$row3.attr("value","Serologia");
+		$row3.attr("readonly","readonly");
+		$row1.attr("name","examen3");
 
-        checkbox.attr("type","hidden");
-		var checkbox2= $("<input>")
-
-        checkbox2.attr("type","hidden");
-		var checkbox3= $("<input>");
-        checkbox3.attr("type","hidden");
-		var th1=$("<td>");var th2=$("<td>");
-		var th3=$("<td>");var th4=$("<td>");
-		var th5=$("<td>");var th6=$("<td>");
-        th1.append(checkbox);
-        th3.append(checkbox2);
-        th5.append(checkbox3);
-		th2.text("Hemograma");
-		th4.text("Bioquimica");
-		th6.text("Serologia");
-		$row1.append(th1);
-		$row1.append(th2);
-		$row2.append(th3);
-		$row2.append(th4);
-		$row3.append(th5);
-		$row3.append(th6);
 		tabla.append($row1);
 		tabla.append($row2);
 		tabla.append($row3);
 
 	}
 	else if(opcion =="Heces"){
-		var $row= $("<tr>");
-		var th=$("<td>");var th2=$("<td>");
-		var checkbox= $("<input >")
-		checkbox.attr("type","hidden");
-        th.append(checkbox);
-		th2.text("Coprocultivo");
-		$row.append(th);
-		$row.append(th2);
-		tabla.append($row);
+		var $row1= $("<input >");
+		$row1.attr("type","text");
+		$row1.attr("value","Coprocultivo");
+		$row1.attr("readonly","readonly");
+		$row1.attr("name","examen1");
+		tabla.append($row1);
 
 	}
 	else if(opcion=="Orina"){
-		var $row= $("<row>");
-		var th=$("<td>");var th2=$("<td>");
-		var checkbox= $("<input >")
-
-        checkbox.attr("type","hidden");
-        th.append(checkbox);
-		th2.text("Uroanalisis");
-		$row.append(th);
-		$row.append(th2);
-		tabla.append($row);
+		var $row1= $("<input >");
+		$row1.attr("type","text");
+		$row1.attr("value","Uroanalisis");
+		$row1.attr("readonly","readonly");
+		$row1.attr("name","examen1");
+		tabla.append($row1);
 	}
 }
