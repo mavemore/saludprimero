@@ -32,7 +32,11 @@ router.get('/', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/pacientes', isLoggedIn, function(req, res, next) {
-    res.render('operario/admin_pacientes', { title: 'Administrar Pacientes' });
+    Paciente.find().exec(function(err, paciente){
+        res.render('operario/admin_pacientes', { title: 'Administrar Pacientes',
+            pacientes: paciente});
+    })
+
 });
 
 router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {
