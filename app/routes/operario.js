@@ -139,7 +139,7 @@ router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
                 console.log('Message sent: ' + info.response);
             });
         });
-        res.redirect('/operario/admin_pacientes');
+        res.redirect('/operario/pacientes');
 
     }
 );
