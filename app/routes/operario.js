@@ -113,6 +113,9 @@ router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
                 paciente.user = newUser._id;
                 paciente.nombres = req.param('nombre');
                 paciente.apellidos = req.param('apellido');
+                paciente.direccion= "";
+                paciente.telefono= "";
+                paciente.email= email;
                 paciente.cedula = req.param('cedula');
                 
                 paciente.save(function (err) {
