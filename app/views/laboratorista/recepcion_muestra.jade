@@ -15,13 +15,13 @@ block content
 								th Paciente
 								th Notificar
 						tbody
-							each examen in examenes
+							each muestra in muestras
 								tr
 									td 
 										input(type='checkbox', value='')
-									td codigo
-									td=examen.fechaMuestra
-									td=examen.tipoMuestra
+									td muestra.codigo
+									td muestra.fecha
+									td muestra.tipo
 									td paciente de muestra
 									td 
 										button.btnNotificar.btn(type="button") Notificar

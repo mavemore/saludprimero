@@ -8,6 +8,7 @@ var schema = new Schema({
     apellidos: String,
     direccion: String,
     cedula: String,
+    email: String,
     telefonos: [],
     foto: String,
 });

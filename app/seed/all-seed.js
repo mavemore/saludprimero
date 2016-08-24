@@ -3,13 +3,15 @@ var Paciente = require('../models/paciente');
 var Muestra = require('../models/muestra');
 
 var mongoose = require('mongoose');
+//mongodb://admin:SaludPrimero@ds153835.mlab.com:53835/saludprimero30
+//mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode
 mongoose.connect('mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode');
 require('../config/passport');
 
 
 var muestra1 = new Muestra({
     tipo: "sangre",
-    fecha: Date.now,
+    fecha: Date.now(),
     codigo: "123456",
     estado: "listo",
     examenes: [{
@@ -28,11 +30,11 @@ var muestra1 = new Muestra({
     }]
 });
 
-muestra1.save();
+
 
 var muestra2 = new Muestra({
     tipo: "Orina",
-    fecha: Date.now,
+    fecha: Date.now(),
     codigo: "123457",
     estado: "pendiente",
     examenes: [{
@@ -51,7 +53,7 @@ var muestra2 = new Muestra({
     }]
 });
 
-muestra2.save();
+
 
 var user1 = new User ({
     email: 'oscarmoreno_ds@hotmail.com',
@@ -92,11 +94,12 @@ var paciente1 = new Paciente ({
     apellidos: "moreno",
     direccion: "av. brasil",
     cedula: "0931245226",
+    email: "oscar@hotmail.com",
     telefonos: ["123489", "1312312"],
     foto: "foto"
 });
 paciente1.muestras.push(muestra1);
-paciente1.muestras.push(muestra2);
+//paciente1.muestras.push(muestra2);
 
 var paciente2 = new Paciente ({
     user: user4._id,
@@ -104,12 +107,19 @@ var paciente2 = new Paciente ({
     apellidos: "Manosalvals",
     direccion: "av. debo hacer más u.u",
     cedula: "093222323",
+    email: "carlos@hotmail.com",
     telefonos: ["123489", "1312312"],
     foto: "foto"
 });
 
-paciente2.muestras.push(muestra1);
+//paciente2.muestras.push(muestra1);
 paciente2.muestras.push(muestra2);
+
+muestra1.paciente = paciente1._id;
+muestra2.paciente = paciente2._id;
+
+muestra1.save();
+muestra2.save();
 
 paciente1.save();
 paciente2.save();

@@ -19,7 +19,7 @@ router.get('/recepcion-muestras',isLoggedIn, function(req, res, next) {
     Examen.find({estado: "Pendiente"},function(err, list){
     res.render('laboratorista/recepcion_muestra', { 
       title: 'Recepcion de Muestras', 
-      examenes: list
+      muestras: list
     });
   }); 
 });
@@ -42,6 +42,11 @@ router.get('/ingreso-resultados', isLoggedIn, function(req, res, next) {
       examenes: list
     });
   }); 
+});
+
+router.post('/ingreso-resultados/examenes', isLoggedIn, function(req, res, next) {
+    console.log("ingresado: " + req.body.examenes[0]);
+    console.log("codigo: " + req.body.codigo);
 });
 
 router.use('/', notLoggedIn, function (req, res, next) {

@@ -33,8 +33,19 @@ router.get('/', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/pacientes', isLoggedIn, function(req, res, next) {
-    res.render('operario/admin_pacientes', { title: 'Administrar Pacientes' });
+    Paciente.find().exec(function(err, paciente){
+        res.render('operario/admin_pacientes', { title: 'Administrar Pacientes',
+            pacientes: paciente});
+    })
+
 });
+
+router.get('/pacientes/prueba', function(req, res, next){
+    Paciente.find().exec(function ( err, paciente){
+        console.log(paciente);
+        res.send(paciente);
+    });
+})
 
 router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {
     var messages = req.flash('error');
@@ -43,21 +54,13 @@ router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/muestras', isLoggedIn,function(req, res, next) {
-    var Nombres  = [];
-    Paciente.find(function (err, pacientes) {
-        pacientes.forEach(function (paciente) {
-           //console.log(paciente.nombres);
-            Nombres.push(paciente.nombres);
-            //console.log(Nombres);
-        });
-        console.log(Nombres);
-    });
     Muestra.find(function (err, muestras) {
-        muestras.forEach(function (muestra) {
-            
-        })
+        console.log(muestras);
+        res.render('operario/admin_muestra', { title: 'Administrar Muestras',
+            muestras: muestras
+        });
     });
-    res.render('operario/admin_muestra', { title: 'Administrar Muestras' });
+
 });
 
 router.get('/muestras/editar', isLoggedIn, function(req, res, next) {
@@ -71,11 +74,18 @@ router.get('/reportes', isLoggedIn, function(req, res, next) {
 router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
 
     console.log("POST muestra");
+    var centro = req.body.centro;
+    console.log(centro);
+    var muestra = req.body.muestra;
+    console.log(muestra);
+    var fecha = req.body.fecha;
+    console.log(fecha);
+
 
 });
 router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
-        console.log("POST:" + req.param('emailP'));
-        var email = req.param('emailP');
+        console.log("POST:" + req.param('email'));
+        var email = req.param('email');
         var errors = req.validationErrors();
         if(errors){
             var messages = [];
@@ -101,7 +111,7 @@ router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
             newUser.email = email;
             var pass = "";
             var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            for( var i=0; i < 5; i++ ) {
+            for( var i=0; i < 8; i++ ) {
                 pass += possible.charAt(Math.floor(Math.random() * possible.length));
             }
 
@@ -115,10 +125,11 @@ router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
                 console.log("Estamos en pacientes");
                 var paciente = new Paciente();
                 paciente.user = newUser._id;
-                paciente.nombres = req.param('nombreP');
-                paciente.apellidos = req.param('apellidoP');
-                paciente.cedula = req.param('cedulaP');
-                
+                paciente.nombres = req.param('nombre');
+                paciente.apellidos = req.param('apellido');
+                paciente.cedula = req.param('cedula');
+                paciente.email = email;
+
                 paciente.save(function (err) {
                     if (err) return handleError(err);
                     console.log("funciona!");
@@ -143,7 +154,8 @@ router.post('/ingreso-muestras/nuevoPaciente',  function (req, res, done) {
                 console.log('Message sent: ' + info.response);
             });
         });
-        res.redirect('/operario/ingreso-muestras');
+        res.redirect('/operario/pacientes');
+
     }
 );
 
