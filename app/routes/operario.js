@@ -112,7 +112,7 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
                     tipo : muestra,
                     fecha : fecha,
                     codigo : cedula + fecha,
-                    estado : "En Espera",
+                    estado : "Pendiente",
                     examenes:[{
                         nombre: examen1,
                         resultados: []
@@ -145,7 +145,7 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
                     tipo : muestra,
                     fecha : fecha,
                     codigo : cedula + fecha,
-                    estado : "En Espera",
+                    estado : "Pendiente",
                     examenes:[{
                         nombre: examen1,
                         resultados: []

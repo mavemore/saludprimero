@@ -38,20 +38,9 @@ block content
                     //button#btnVolver.col-md-3.col-md-offset-2.btn(type="button") Volver
                     a(href='/operario/muestras')#btnVolver.col-md-3.col-md-offset-2.btn(type='button').btn-primary
                         |Volver
-                    button#btnCodigo.col-md-3.col-md-offset-2.btn(type="submit", data-toggle="modal",data-target="#codigo")
+                    button#btnCodigo.col-md-3.col-md-offset-2.btn(type="submit")
                         span.glyphicon.glyphicon-barcode(aria-hidden='true')
                             |  Generar Código
-    #codigo.modal.fade(tabindex="-1",role="dialog")
-        .modal-dialog
-            .modal-content
-                .modal-header
-                    button.close(type="submit", data-dismiss='modal')
-                        span(aria-hidden="true") &times;
-                        span.sr-only Close
-                    h4.modal-title Codigo Generado
-                .modal-body
-                    #bcTarget
-                .modal-footer
 
 append scripts
     script
