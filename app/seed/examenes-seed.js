@@ -1,7 +1,8 @@
 var Examen = require('../models/modExamen.js');
 
 var mongoose = require('mongoose');
-
+//mongodb://admin:SaludPrimero@ds153835.mlab.com:53835/saludprimero30
+//mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode
 mongoose.connect('mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode');
 require('../config/passport');
 
