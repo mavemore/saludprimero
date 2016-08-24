@@ -1,19 +1,34 @@
 extend dash_operario
 
 block content 
-	.col-md-9
-		+panel-default("Busqueda de Muestra")
-			.panel-body
-				form.form-inline(data-toggle='validator', role='form')
-					.form-group.col-md-8
-						label.col-md-3.control-label(for='inputBusqueda') Criterio de Busqueda:
-						input#inputBusqueda.form-control.col-md-4.required(type='text', maxlength='30')
-						button#btnBuscar.btn.btn-default(type='button')
-							span.glyphicon.glyphicon-search(aria-hidden='true')
-				button#btnNuevo.col-md-4.btn(type="button") Agregar Muestra
+	.col-md-9			
 		+panel-default("Resultados de Busqueda")
 			.panel-body
-				+table-condensed(["Seleccion","Fecha Toma Muestra", "Tipo de Muestra","Paciente","Estado","Editar"],[])
+				.table-responsive
+					table#tblMuestras.table.table-hover
+						thead
+							tr
+								th Seleccion
+								th Codigo
+								th Fecha Toma Muestra
+								th Tipo de Muestra
+								th Paciente
+								th Estado
+								th Editar
+						tbody
+							if examenes
+								each examen in examenes
+									tr
+										td 
+											input(type='checkbox', value='')
+										td codigo
+										td=examen.fechaMuestra
+										td=examen.tipoMuestra
+										td paciente de muestra
+										td=examen.estado
+										td Lapiz Glyphicon
+
+			button#btnNuevo.col-md-4.btn(type="button") Agregar Muestra
 			button#btnEliminar.col-md-4.col-md-offset-4.btn(data-toggle="modal",data-target="#alerta") Eliminar
 		#alerta.modal.fade(tabindex="-1",role="dialog")
 			.modal-dialog

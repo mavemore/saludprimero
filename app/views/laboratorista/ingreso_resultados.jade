@@ -2,15 +2,7 @@ extends dash_lab
 
 block content
 	.col-md-9
-		+panel-default("Busqueda de Muestra")
-			.panel-body
-				form.form-inline(data-toggle='validator', role='form')
-					.form-group.col-md-12
-						label.col-md-3.control-label(for='inputBusqueda') Criterio de Busqueda:
-						input#inputBusqueda.form-control.col-md-4.required(type='text', maxlength='30')
-						button#btnBuscar.btn.btn-default(type='button')
-							span.glyphicon.glyphicon-search(aria-hidden='true')
-		+panel-default("Resultados de Busqueda")
+		+panel-default("Muestras")
 			.panel-body
 				.table-responsive
 					table#tblMuestras.table.table-hover
