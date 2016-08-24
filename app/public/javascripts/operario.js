@@ -37,6 +37,7 @@ function eliminar(){
 				url: '/operario/pacientes/eliminar',
 				data: 'cedulas='+ cedulas
 			});
+			window.location.replace("/operario/pacientes");
 		});
 	}
 }

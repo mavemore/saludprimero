@@ -51,7 +51,7 @@ router.post('/pacientes/eliminar', function(req, res, next){
     Paciente.remove({cedula:req.body.cedulas}).exec(function (err){
             if (err) return handleError(err);
         });
-    res.redirect('/operario/pacientes');
+    //res.redirect('/operario/admin_pacientes');
     /*for(var i = 0; i<cedulas.length;i++){
         Pacientes.remove({cedula:cedulas[i]}).exec(function (err){
             if (err) return handleError(err);
