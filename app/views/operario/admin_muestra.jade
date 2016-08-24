@@ -27,8 +27,9 @@ block content
 										td=muestra.estado
 										td
 											a(href="#") Editar
-
-			button#btnNuevo.col-md-4.btn(type="button") Agregar Muestra
+			a(href='/operario/ingreso-muestras').col-md-4.btn
+				|Agregar Muestra
+			//button#btnNuevo.col-md-4.btn(type="button", href = "/operario/ingreso-muestras") Agregar Muestra
 			button#btnEliminar.col-md-4.col-md-offset-4.btn(data-toggle="modal",data-target="#alerta") Eliminar
 		#alerta.modal.fade(tabindex="-1",role="dialog")
 			.modal-dialog

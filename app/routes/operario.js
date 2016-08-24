@@ -139,6 +139,7 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
                         resultados: []
                     }]
                 });
+                muestra1.paciente = paciente._id;
                 muestra1.save(function (err) {
                     if (err) return handleError(err);
                     console.log("wardiola");
@@ -165,6 +166,7 @@ router.post('/ingreso-muestras/nuevaMuestra', function (req, res) {
                         resultados: []
                     }]
                 });
+                muestra1.paciente = paciente._id;
                 muestra1.save(function (err) {
                     if (err) return handleError(err);
                     console.log("wardiola");
