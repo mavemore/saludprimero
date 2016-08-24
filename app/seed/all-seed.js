@@ -11,7 +11,7 @@ require('../config/passport');
 
 var muestra1 = new Muestra({
     tipo: "sangre",
-    fecha: Date.now,
+    fecha: Date.now(),
     codigo: "123456",
     estado: "listo",
     examenes: [{
@@ -34,7 +34,7 @@ muestra1.save();
 
 var muestra2 = new Muestra({
     tipo: "Orina",
-    fecha: Date.now,
+    fecha: Date.now(),
     codigo: "123457",
     estado: "pendiente",
     examenes: [{
@@ -94,6 +94,7 @@ var paciente1 = new Paciente ({
     apellidos: "moreno",
     direccion: "av. brasil",
     cedula: "0931245226",
+    email: "oscar@hotmail.com",
     telefonos: ["123489", "1312312"],
     foto: "foto"
 });
@@ -106,6 +107,7 @@ var paciente2 = new Paciente ({
     apellidos: "Manosalvals",
     direccion: "av. debo hacer más u.u",
     cedula: "093222323",
+    email: "carlos@hotmail.com",
     telefonos: ["123489", "1312312"],
     foto: "foto"
 });
