@@ -6,7 +6,7 @@ var Muestra = require('../models/muestra.js');
 
 router.get('/logout', isLoggedIn,function (req, res, next) {
     req.logout();
-    res.redirect('/');
+    res.redirect('/user/signin');
 });
 
 
@@ -70,7 +70,8 @@ function isLoggedIn(req, res, next) {
         return next();
     }
     console.log('sesion del laboratorista, no tiene permiso');
-    res.redirect('/');
+    req.logout();
+    res.redirect('/user/signin');
 }
 
 
@@ -78,7 +79,8 @@ function notLoggedIn(req, res, next) {
     if (!req.isAuthenticated()){
         return next();
     }
-    res.redirect('/');
+    req.logout();
+    res.redirect('/user/signin');
 }
 
 module.exports = router;
