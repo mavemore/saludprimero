@@ -25,20 +25,7 @@ block content
 									td paciente de muestra
 									td 
 										button.btnNotificar.btn(type="button") Notificar
-			button#btnRecibido.col-md-4.col-md-offset-4.btn(data-toggle="modal",data-target="#alerta") Recibido
-		#alerta.modal.fade(tabindex="-1",role="dialog")
-			.modal-dialog
-				.modal-content
-					.modal-header
-						button.close(type="button",data-dismiss="modal")
-							span(aria-hidden="true") &times;
-							span.sr-only Close
-						h4.modal-title Alerta
-					.modal-body
-						p Si da click en Aceptar, confirma el recibo de las muestras seleccionadas y el estado de ellas será "En espera".
-					.modal-footer
-						button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
-						button.btn.btn-default(type='button', data-dismiss='modal') Aceptar
+			button#btnRecibido.col-md-4.col-md-offset-4.btn(type="button") Recibido
 append scripts
 	script
 		include ../../public/javascripts/laboratorista.js

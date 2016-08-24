@@ -1,9 +1,10 @@
 $(document).ready(function(){
 	$('#tblMuestras').DataTable();
-	init();
+	notificar();
+	recibir();
 });
 
-function init(){
+function notificar(){
 	var notificaciones = $(".btnNotificar");
 
 	for(var i = 0; i<notificaciones.length;i++){
@@ -16,4 +17,21 @@ function init(){
 			});
 		});
 	}
+}
+
+function recibir(){
+	$("#btnRecibido").on('click', function(){
+		var recibidos = $("input:checked");
+		var codigos = [];
+		var i = 0;
+		$("input:checked").each(function(){
+			codigos[i] = $(this).closest("tr").children(':nth-child(2)').text();
+			i++;
+		});
+		$.ajax({
+			type: 'POST',
+			url: '/laboratorista/recepcion-muestras/recibir',
+			data: 'codigos='+ codigos
+		});
+	});
 }

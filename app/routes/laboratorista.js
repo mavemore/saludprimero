@@ -29,9 +29,9 @@ router.post('/recepcion-muestras/notificar',isLoggedIn, function(req, res, next)
    console.log("notificando "+req.body.codigo);
 });
 
-router.post('/recepcion-muestras/recibido',isLoggedIn, function(req, res, next) {
+router.post('/recepcion-muestras/recibir',isLoggedIn, function(req, res, next) {
    //Hay que cambiar el estado de la muestra que tenga ese codigo por "Cancelada"
-   console.log("recibido "+req.body.codigo);
+   console.log("recibido "+req.body.codigos);
 });
 
 
