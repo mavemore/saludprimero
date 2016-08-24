@@ -79,7 +79,7 @@ function cargarExamenes(){
 	else if(opcion=="Orina"){
 		var $row= $("<row>");
 		var th=$("<td>");var th2=$("<td>");
-		var checkbox= $("<input>");
+		var checkbox= $("<input >")
 
         checkbox.attr("type","hidden");
         th.append(checkbox);
