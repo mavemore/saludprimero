@@ -8,6 +8,10 @@ block content
                     .form-group.col-md-12.form-inline
                         label.col-md-2.control-label(for='pacientes') Paciente:
                         select#pacientes.col-md-4.form-control
+                            if pacientes
+                                each paciente in pacientes
+                                    option(value=paciente.cedula)=paciente.cedula
+
                         button#btnNuevo.col-md-3.col-md-offset-2.btn(type="button",data-toggle="modal",data-target="#nuevoPaciente") Agregar Paciente
                     .form-group.form-inline
                         .form-group.col-md-6

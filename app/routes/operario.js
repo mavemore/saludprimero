@@ -60,7 +60,11 @@ router.post('/pacientes/eliminar', function(req, res, next){
 
 router.get('/ingreso-muestras', isLoggedIn, function(req, res, next) {
     var messages = req.flash('error');
-    res.render('operario/ingreso_muestra', { title: 'Ingreso de Muestras', messages: messages, hasErrors: messages.length > 0});
+    Paciente.find().exec(function(err, paciente){
+        res.render('operario/ingreso_muestra', { title: 'Ingreso Muestras',
+            pacientes: paciente});
+    });
+   // res.render('operario/ingreso_muestra', { title: 'Ingreso de Muestras', messages: messages, hasErrors: messages.length > 0});
     //res.render('operario/ingresomuestra');
 });
 
@@ -69,7 +73,11 @@ router.get('/muestras', isLoggedIn,function(req, res, next) {
 });
 
 router.get('/muestras/editar', isLoggedIn, function(req, res, next) {
-    res.render('operario/editar_muestra', { title: 'Editar Muestra' });
+    Paciente.find().exec(function(err, paciente){
+        res.render('operario/editar_muestra', { title: 'Administrar Pacientes',
+            pacientes: paciente});
+    })
+
 });
 
 router.get('/reportes', isLoggedIn, function(req, res, next) {
