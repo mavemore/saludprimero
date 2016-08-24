@@ -124,12 +124,12 @@ router.get('/examenes', isLoggedIn, function(req, res, next) {
     usuarioLog.findOne({ email : req.session['email']})
         .populate({path: 'paciente', populate: {path: 'muestras'}})
         .exec( function (err, user) {
-            console.log("------");
+            /*console.log("------");
             console.log(user.paciente.muestras);
             console.log("------");
             console.log(user.paciente.muestras[0]);
             console.log("------");
-            console.log(user.paciente.muestras[0].examenes);
+            console.log(user.paciente.muestras[0].examenes);*/
             res.render('usuario/examenes_user' , {title: 'Mis Examenes',
                 examenes: user.paciente.muestras
             });
