@@ -7,7 +7,7 @@ var user = require('../models/user_login.js');
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
-  res.render('/user/login', { title: 'Login| SaludPrimero S.A'});
+  res.render('/user/signin', { title: 'Login| SaludPrimero S.A'});
 });
 
 
