@@ -2,18 +2,12 @@ extend dash_operario
 
 block content 
 	.col-md-9
-		+panel-default("Informacion de Paciente")
-			.panel-body
-				form.form-inline
-					.form-group.col-md-6
-						label.col-md-3.control-label(for='nombrePaciente') Nombre:
-						input#nombrePaciente.col-md-3.form-control(type='text', readonly='')
-					.form-group.col-md-6
-						label.col-md-3.control-label(for='apellidoPaciente') Apellido:
-						input#apellidoPaciente.col-md-3.form-control(type='text', readonly='')
 		+panel-default("Informacion de Muestra")
 			.panel-body
-				form
+				form(action='/operario/editar_muestra', method='put')
+					.form-group.col-md-12
+						label.col-md-3.control-label(for='pacientes') Paciente:
+						select#pacientes.col-md-3.form-control
 					.form-group.form-inline
 						.form-group.col-md-6
 							label.col-md-3.control-label(for='centromed') Centro Médico:

@@ -57,11 +57,12 @@ router.post('/perfil/editUser', function(req, res, next) {
                 user.paciente.cedula =req.body.cedula;
                 user.email = req.body.email;
                 user.paciente.direccion =req.body.direccion;
-                user.paciente.telefonos[0] =req.body.telefono;
+                user.paciente.telefonos =req.body.telefono;
                 user.paciente.save();
                 user.save();
+                res.redirect('/usuario/perfil');
             })
-        res.redirect('/usuario/perfil');
+        //res.redirect('/usuario/perfil');
 }, function (err) {
         res.redirect('/usuario/perfil');
     }

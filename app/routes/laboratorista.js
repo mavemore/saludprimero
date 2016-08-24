@@ -24,6 +24,17 @@ router.get('/recepcion-muestras',isLoggedIn, function(req, res, next) {
   }); 
 });
 
+router.post('/recepcion-muestras/notificar',isLoggedIn, function(req, res, next) {
+   //Hay que cambiar el estado de la muestra que tenga ese codigo por "Cancelada"
+   console.log("notificando "+req.body.codigo);
+});
+
+router.post('/recepcion-muestras/recibir',isLoggedIn, function(req, res, next) {
+   //Hay que cambiar el estado de la muestra que tenga ese codigo por "Cancelada"
+   console.log("recibido "+req.body.codigos);
+});
+
+
 router.get('/ingreso-resultados', isLoggedIn, function(req, res, next) {
     Examen.find({estado: "En Espera"},function(err, list){
     res.render('laboratorista/ingreso_resultados', { 
