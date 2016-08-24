@@ -33,12 +33,17 @@ router.post('/recepcion-muestras/notificar',isLoggedIn, function(req, res, next)
       muestra.estado = 'Cancelado';
       muestra.save();
    });
-   res.redirect('/laboratorista/recepcion-muestras');
+   //res.redirect('/laboratorista/recepcion-muestras');
 });
 
 router.post('/recepcion-muestras/recibir',isLoggedIn, function(req, res, next) {
    //Hay que cambiar el estado de la muestra que tenga ese codigo por "Cancelada"
    console.log("recibido "+req.body.codigos);
+   Muestra.findOne({codigo:req.body.codigo}).exec(function (err,muestra){
+      if (err) return handleError(err);
+      muestra.estado = 'En Espera';
+      muestra.save();
+   });
 });
 
 
