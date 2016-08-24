@@ -3,8 +3,6 @@ var Schema = mongoose.Schema;
 
 var schema = new Schema({
     nombre: {type: String, required: true},
-    estado: String,
-    codigo: String,
     resultado: [{
         parametro: String,
         unidades: String,

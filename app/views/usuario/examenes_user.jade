@@ -14,11 +14,11 @@ block content
 					tbody
 						each examen in examenes
 							tr
-								td=examen.fechaMuestra
-								td=examen.tipoMuestra
+								td=examen.fecha
+								td=examen.tipo
 								td
 									.progress
-										if(examen.estado == "Pendiente")
+										if(examen.estado == "pendiente")
 											.progress-bar.progress-bar-danger(role='progressbar', aria-valuenow='33', aria-valuemin='0', aria-valuemax='100', style='width:33%')
 												| Pendiente
 										else if(examen.estado == "En Espera")
@@ -26,9 +26,9 @@ block content
 												| En Espera
 										else
 											.progress-bar.progress-bar-success(role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width:100%')
-												| Listo
+												| listo
 								td 
-									if(examen.estado == "Listo")
+									if(examen.estado == "listo")
 										a(href="#") Ver Adjunto
 
 append scripts

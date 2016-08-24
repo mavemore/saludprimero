@@ -1,70 +1,57 @@
 var User = require('../models/user_login');
 var Paciente = require('../models/paciente');
 var Muestra = require('../models/muestra');
-var Examen = require('../models/examen');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://admin:oscarpol@ds161295.mlab.com:61295/practicanode');
 require('../config/passport');
 
-var examen1 = new Examen ({
-    nombre: "Hemograma",
-    estado: "Listo",
-    codigo: "12345678",
-    resultado: [{
-        parametro: "hematocrito",
-        unidades: "25",
-        medidas: "44.9",
-        referencia: "35.2 - 52.8"
-    },{
-        parametro: "Linfocitos",
-        unidades: "24",
-        medidas: "22",
-        referencia: "9 - 26"
-    }
-    ]
-});
 
-examen1.save(
-    console.log("hola")
-);
-
-var examen2 = new Examen({
-    nombre: "examen de Orina",
-    estado: "Pendiente",
-    codigo: "12345678",
-    resultado: [{
-        parametro: "cosas de orina 1",
-        unidades: "25",
-        medidas: "44.9",
-        referencia: "35.2 - 52.8"
-    },{
-        parametro: "cosas de orina 2",
-        unidades: "24",
-        medidas: "22",
-        referencia: "9 - 26"
-    }
-    ]
-});
-
-examen2.save();
-
-var muestra1 = new Muestra ({
+var muestra1 = new Muestra({
     tipo: "sangre",
-    fecha: Date.now
+    fecha: Date.now,
+    codigo: "123456",
+    estado: "listo",
+    examenes: [{
+        nombre: "Hemograma",
+        resultados: [{
+            parametro: "hematocrito",
+            unidades: "25",
+            medidas: "44.9",
+            referencia: "35.2 - 52.8"
+        }, {
+            parametro: "Linfocitos",
+            unidades: "24",
+            medidas: "22",
+            referencia: "9 - 26"
+        }]
+    }]
 });
 
-muestra1.examenes.push(examen1);
 muestra1.save();
 
-var muestra2 = new Muestra ({
+var muestra2 = new Muestra({
     tipo: "Orina",
-    fecha: Date.now
+    fecha: Date.now,
+    codigo: "123457",
+    estado: "pendiente",
+    examenes: [{
+        nombre: "examen de orina",
+        resultados: [{
+            parametro: "cosas de orina 1",
+            unidades: "25",
+            medidas: "44.9",
+            referencia: "35.2 - 52.8"
+        }, {
+            parametro: "cosas de orina 2",
+            unidades: "24",
+            medidas: "22",
+            referencia: "9 - 26"
+        }]
+    }]
 });
 
-muestra2.examenes.push(examen2);
 muestra2.save();
-
 
 var user1 = new User ({
     email: 'oscarmoreno_ds@hotmail.com',
@@ -73,13 +60,12 @@ var user1 = new User ({
 });
 user1.password = user1.encryptPassword(user1.password);
 
-
-
 var user2 = new User ({
     email: 'veronica@hotmail.com',
     password: '1234',
     rol: 'operario'
 });
+
 user2.password = user2.encryptPassword(user2.password);
 //user2.save();
 
@@ -90,6 +76,7 @@ var user3 = new User ({
 });
 user3.password = user3.encryptPassword(user3.password);
 //user3.save();
+
 var user4 = new User ({
     email: 'carlos@hotmail.com',
     password: '1234',

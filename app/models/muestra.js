@@ -4,8 +4,17 @@ var Schema = mongoose.Schema;
 var schema = new Schema({
     tipo: {type: String, required: true},
     fecha: {type: String, required: true},
-    examenes: [{type: Schema.Types.ObjectId, ref: 'examendb'}]
-
+    codigo: String,
+    estado: String,
+    examenes : [{
+        nombre: String,
+        resultados: [{
+            parametro: String,
+            unidades: String,
+            medidas: String,
+            referencia: String
+        }]
+    }]
 });
 
 module.exports = mongoose.model("muestradb", schema);
